@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Upload, User, Save, Camera } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -15,12 +16,12 @@ import http from "@/api/http";
 
 
 const ProfileSetup = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { userId, updateFirstLoginStatus } = useAuthStore();
   const [nickname, setNickname] = useState("");
 const [gender, setGender] = useState<string | null>(null);  // 初始值为 null 或 'Male'
-
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
@@ -37,8 +38,8 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
     
     if (!nickname) {
       toast({
-        title: "Error",
-        description: "Please provide your nickname",
+        title: t('profileSetup.toast.error.title'),
+        description: t('profileSetup.toast.error.missingNickname'),
         variant: "destructive",
       });
       return;
@@ -46,8 +47,8 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
     
     if (!resumeFile) {
       toast({
-        title: "Error",
-        description: "Please upload your resume",
+        title: t('profileSetup.toast.error.title'),
+        description: t('profileSetup.toast.error.missingResume'),
         variant: "destructive",
       });
       return;
@@ -80,8 +81,8 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
         updateFirstLoginStatus(undefined, true);
 
         toast({
-          title: "Success",
-          description: "Personal profile settings have been successful",
+          title: t('profileSetup.toast.success.title'),
+          description: t('profileSetup.toast.success.description'),
         });
         navigate("/");
       } else {
@@ -90,8 +91,8 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to set up personal profile",
+        title: t('profileSetup.toast.error.title'),
+        description: error instanceof Error ? error.message : t('profileSetup.toast.error.setupFailed'),
         variant: "destructive",
       });
     } finally {
@@ -152,9 +153,9 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
       >
         <BlurContainer className="p-6">
           <motion.div variants={itemVariants} className="text-center mb-6">
-            <h1 className="text-2xl font-semibold">Complete Your Profile</h1>
+            <h1 className="text-2xl font-semibold">{t('profileSetup.title')}</h1>
             <p className="text-sm text-muted-foreground mt-2">
-              Upload your resume and personal information
+              {t('profileSetup.subtitle')}
             </p>
           </motion.div>
           
@@ -186,35 +187,35 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
                   />
                 </label>
               </div>
-              <p className="text-xs text-muted-foreground">Upload a profile photo</p>
+              <p className="text-xs text-muted-foreground">{t('profileSetup.avatar.upload')}</p>
             </div>
             
             <div className="space-y-2">
               <label htmlFor="nickname" className="text-sm font-medium">
-                Nickname
+                {t('profileSetup.form.nickname.label')}
               </label>
               <Input
                 id="nickname"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
-                placeholder="Enter your nickname"
+                placeholder={t('profileSetup.form.nickname.placeholder')}
               />
             </div>
             
             <div className="space-y-2">
-              <label className="text-sm font-medium">Gender</label>
+              <label className="text-sm font-medium">{t('profileSetup.form.gender.label')}</label>
 <RadioGroup value={gender} onValueChange={setGender} className="flex space-x-4">
   <div className="flex items-center space-x-2">
     <RadioGroupItem value="Male" id="male" />
-    <Label htmlFor="male">Male</Label>
+    <Label htmlFor="male">{t('profileSetup.form.gender.male')}</Label>
   </div>
   <div className="flex items-center space-x-2">
     <RadioGroupItem value="Female" id="female" />
-    <Label htmlFor="female">Female</Label>
+    <Label htmlFor="female">{t('profileSetup.form.gender.female')}</Label>
   </div>
   <div className="flex items-center space-x-2">
     <RadioGroupItem value="Other" id="other" />
-    <Label htmlFor="other">Other</Label>
+    <Label htmlFor="other">{t('profileSetup.form.gender.other')}</Label>
   </div>
 </RadioGroup>
 
@@ -223,28 +224,30 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
             </div>
             
             <div className="space-y-2">
-              <label htmlFor="resume" className="text-sm font-medium">
-                Resume/CV
+              <label htmlFor="file-upload" className="text-sm font-medium block mb-2">
+                {t('profileSetup.form.resume.label')}
               </label>
               <div className="border border-input rounded-md p-4 bg-background">
-                <label htmlFor="file-upload" className="cursor-pointer">
+                <label htmlFor="file-upload" className="cursor-pointer block">
                   <div className="flex flex-col items-center justify-center gap-2 py-4">
                     <Upload className="h-8 w-8 text-muted-foreground" />
                     <p className="text-sm font-medium">
-                      {resumeFile ? resumeFile.name : "Upload your resume"}
+                      {resumeFile 
+                        ? t('profileSetup.form.resume.selected', { fileName: resumeFile.name })
+                        : t('profileSetup.form.resume.uploadButton')}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      PDF, DOC or DOCX up to 5MB
+                      {t('profileSetup.form.resume.fileTypes')}
                     </p>
                   </div>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    className="hidden"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleResumeFileChange}
-                  />
                 </label>
+                <input
+                  id="file-upload"
+                  type="file"
+                  className="hidden"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleResumeFileChange}
+                />
               </div>
             </div>
             
@@ -257,11 +260,11 @@ const [gender, setGender] = useState<string | null>(null);  // 初始值为 null
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Saving...
+                    {t('common.saving')}
                   </div>
                 ) : (
                   <div className="flex items-center justify-center">
-                    <Save className="mr-2 h-4 w-4" /> Complete Setup
+                    <Save className="mr-2 h-4 w-4" /> {t('profileSetup.form.submit')}
                   </div>
                 )}
               </Button>

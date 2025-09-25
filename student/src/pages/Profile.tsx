@@ -1,15 +1,17 @@
 
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ProfileHeader } from "@/components/profile/ProfileHeader";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
-import { ChevronRight, Shield, HelpCircle, LogOut, Briefcase, FileText } from "lucide-react";
+import { ChevronRight, Shield, HelpCircle, LogOut, Briefcase, FileText, Settings as SettingsIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/stores/auth";
 import { toast } from "sonner";
 
 const Profile = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const userInfo = useAuthStore(state => state.userInfo);
 
@@ -24,7 +26,7 @@ console.log(avatarUrl)
 
 
   // 获取昵称首字母（作为备用头像）
-  const fallbackLetter = (userInfo?.nickname || "U").charAt(0).toUpperCase();
+  const fallbackLetter = (userInfo?.nickname || t('profile.defaultName')).charAt(0).toUpperCase();
 
 
 
@@ -49,36 +51,36 @@ console.log(avatarUrl)
   const menuItems = [
     { 
       icon: Briefcase, 
-      label: "My Jobs", 
-      description: "View applied and saved jobs",
+      label: t('profile.menu.myJobs'), 
+      description: t('profile.menu.myJobsDescription'),
       color: "text-blue-500 dark:text-blue-400",
       route: "/my-jobs"
     },
     { 
       icon: FileText, 
-      label: "My Resume", 
-      description: "View and update your resume",
+      label: t('profile.menu.myResume'), 
+      description: t('profile.menu.myResumeDescription'),
       color: "text-emerald-500 dark:text-emerald-400",
       route: "/my-resume"
     },
     { 
       icon: Shield, 
-      label: "Account Security", 
-      description: "Update password and security settings",
+      label: t('profile.menu.accountSecurity'), 
+      description: t('profile.menu.accountSecurityDescription'),
       color: "text-purple-500 dark:text-purple-400",
       route: "/account-security"
     },
     { 
-      icon: HelpCircle, 
-      label: "Help & Support", 
-      description: "Get help or contact support",
-      color: "text-emerald-500 dark:text-emerald-400",
-      route: "/help-support"
+      icon: SettingsIcon, 
+      label: t('settings.title'), 
+      description: t('settings.title'),
+      color: "text-blue-500 dark:text-blue-400",
+      route: "/settings"
     }
   ];
 
   const logoutItem = {
-    label: "Log Out", 
+    label: t('profile.logout'), 
     color: "text-gray-500",
   };
 
@@ -93,8 +95,8 @@ console.log(avatarUrl)
     // For example: authService.logout();
     
     // Show a success toast
-    toast.success("You have been logged out", {
-      description: "Redirecting to login page..."
+    toast.success(t('profile.logoutSuccess'), {
+      description: t('profile.redirecting')
     });
     
     // Simulate a short delay before redirecting (to show the toast)
@@ -114,10 +116,10 @@ console.log(avatarUrl)
       >
         <motion.div variants={itemVariants}>
           <ProfileHeader 
-            name={userInfo?.nickname || "User"}
+            name={userInfo?.nickname || t('profile.defaultName')}
             email={userInfo?.email || ""}
             avatar={avatarUrl}
-            fallback={(userInfo?.nickname || "U").charAt(0).toUpperCase()}
+            fallback={(userInfo?.nickname || t('profile.defaultName')).charAt(0).toUpperCase()}
           />
         </motion.div>
         

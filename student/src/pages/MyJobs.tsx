@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { JobList } from "@/components/job/JobList";
 import { JobService } from "@/api/job";
 import { type Job } from "@/types/job";
+import { JobList } from "@/components/job/JobList";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const MyJobs = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("applied");
   const [appliedJobs, setAppliedJobs] = useState<Job[]>([]);
@@ -35,7 +37,7 @@ const MyJobs = () => {
       setSavedJobIds(savedJobs.map(job => job.id));
     } catch (error) {
       console.error('Failed to fetch jobs:', error);
-      toast.error("Failed to fetch jobs");
+      toast.error(t('myJobs.toast.fetchError'));
     } finally {
       setLoading({
         applied: false,
@@ -65,7 +67,7 @@ const MyJobs = () => {
       );
     } catch (error) {
       console.error("Failed to save job:", error);
-      toast.error("Failed to save job");
+      toast.error(t('myJobs.toast.saveError'));
     }
   };
 
@@ -123,7 +125,7 @@ const MyJobs = () => {
         <Button variant="ghost" size="icon" onClick={handleBackClick} className="mr-2">
           <ArrowLeft size={20} />
         </Button>
-        <h1 className="text-xl font-medium">My Jobs</h1>
+        <h1 className="text-xl font-medium">{t('myJobs.title')}</h1>
       </header>
 
       <BlurContainer className="overflow-hidden">
@@ -188,7 +190,7 @@ const MyJobs = () => {
         </Tabs>
       </BlurContainer>
 
-      {isJobListClosed && <p>Job List is closed</p>}
+      {isJobListClosed && <p>{t('myJobs.jobListClosed')}</p>}
     </div>
   );
 };

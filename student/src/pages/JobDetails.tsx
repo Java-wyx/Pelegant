@@ -10,6 +10,7 @@ import { JobService } from "@/api/job";
 import type { Job } from "@/types/job";
 import ReactMarkdown from "react-markdown";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface JobDetailsProps {
   jobId?: string;
@@ -18,6 +19,7 @@ interface JobDetailsProps {
 }
 
 const JobDetails = ({ jobId: propJobId, isDrawer = false, className }: JobDetailsProps) => {
+  const { t } = useTranslation();
   const { jobId: paramJobId } = useParams();
   const jobId = propJobId || paramJobId;
   const [job, setJob] = useState<Job | null>(null);
@@ -29,8 +31,9 @@ const JobDetails = ({ jobId: propJobId, isDrawer = false, className }: JobDetail
   const [showApplyButton, setShowApplyButton] = useState(false);
 
   const LoadingSpinner = () => (
-    <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
-      <Loader2 className="animate-spin h-8 w-8 text-ios-primary" />
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)]">
+      <Loader2 className="animate-spin h-8 w-8 text-ios-primary mb-2" />
+      <p className="text-muted-foreground">{t('jobDetails.loading')}</p>
     </div>
   );
 
@@ -39,18 +42,18 @@ const JobDetails = ({ jobId: propJobId, isDrawer = false, className }: JobDetail
       <div className="text-center">
         <p className="text-red-500">{message}</p>
         <Button variant="outline" className="mt-4" onClick={() => window.location.reload()}>
-          Retry
+          {t('common.retry')}
         </Button>
       </div>
     </div>
   );
 
-  const handleTooltipClick = (text: string) => toast.success(`content：${text}`);
+  const handleTooltipClick = (text: string) => toast.success(`${t('common.content')}：${text}`);
 
   useEffect(() => {
     const fetchJobDetails = async () => {
       if (!jobId) {
-        setError("The job ID was not provided");
+        setError(t('jobDetails.error.default'));
         setIsLoading(false);
         return;
       }
@@ -67,10 +70,10 @@ const JobDetails = ({ jobId: propJobId, isDrawer = false, className }: JobDetail
       } catch (err: any) {
         console.error(err);
         const errorMessage = err.message?.includes("404")
-          ? "The position was not found"
+          ? t('jobDetails.error.notFound')
           : err.message?.includes("network")
-          ? "The network connection failed. Please check the network"
-          : "The job details cannot be loaded. Please try again later";
+          ? t('jobDetails.error.network')
+          : t('jobDetails.error.default');
         setError(errorMessage);
       } finally {
         setIsLoading(false);
@@ -92,7 +95,7 @@ const handleApply = async () => {
     const response = await JobService.applyJob(job.id);
 
     if (response?.success) {
-      toast.success(response.data || "Application approved");
+      toast.success(response.data || t('jobDetails.apply.success'));
       setIsApplied(true);
 
       // 异步完成后再设置 URL
@@ -103,7 +106,7 @@ const handleApply = async () => {
         window.open(job.jobUrl, "_blank");
       }
     } else {
-      toast.error("Application failed");
+      toast.error(t('jobDetails.apply.error'));
       if (newWindow) newWindow.close();
     }
   } catch (error) {
@@ -124,7 +127,7 @@ const handleApply = async () => {
       );
     } catch (error) {
       console.error(error);
-      toast.error("Operation failed. Please try again");
+      toast.error(t('jobDetails.save.error'));
     }
   };
 
@@ -189,13 +192,13 @@ const getAvatarFallback = (companyName?: string) => {
             onClick={() =>
               job?.companyUrl
                 ? window.open(job.companyUrl, "_blank")
-                : toast.error("The company link does not exist")
+                : toast.error(t('jobDetails.noCompanyUrl'))
             }
           >
             <Avatar className="h-full w-full">
               <AvatarImage
                 src={job?.logoImage || "/default-logo.png"}
-                alt={job?.companyName || "Company Logo"}
+                alt={job?.companyName || t('jobDetails.aboutCompany')}
                 className="block h-full w-full object-cover object-center"
                 onError={(e) => {
                   e.currentTarget.onerror = null;

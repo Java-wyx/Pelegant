@@ -4,23 +4,29 @@ import { Home, Search, User } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { BlurContainer } from "../ui/BlurContainer";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export function TabBar() {
+  const { t } = useTranslation();
+  
   const tabs = [
     {
-      name: "Home",
+      name: t('tabs.home'),
       path: "/",
       icon: Home,
+      key: 'home'
     },
     {
-      name: "Search",
+      name: t('tabs.search'),
       path: "/search",
       icon: Search,
+      key: 'search'
     },
     {
-      name: "Me",
+      name: t('tabs.me'),
       path: "/profile",
       icon: User,
+      key: 'me'
     },
   ];
 

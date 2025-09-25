@@ -12,8 +12,10 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 const MyResume = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isUploading, setIsUploading] = useState(false);
   const [viewingResume, setViewingResume] = useState<string | null>(null);
@@ -41,15 +43,15 @@ const MyResume = () => {
       setResumeInfo(data);
 
       if (data.hasResume && data.fileExists) {
-        // 从文件路径提取文件名
+        // Extract filename from path
         const fileName = data.resumePath.split('/').pop() || 'resume.pdf';
-        const fileSize = data.fileSize ? `${(data.fileSize / (1024 * 1024)).toFixed(1)} MB` : 'Unknown size';
+        const fileSize = data.fileSize ? `${(data.fileSize / (1024 * 1024)).toFixed(1)} MB` : t('myResume.unknownSize');
         const uploadDate = data.lastModified ?
-          new Date(data.lastModified).toLocaleDateString('en-US', {
+          new Date(data.lastModified).toLocaleDateString(undefined, {
             month: 'short',
             day: 'numeric',
             year: 'numeric'
-          }) : 'Unknown date';
+          }) : t('myResume.unknownDate');
 
         const resumeObj = {
           id: '1',
@@ -68,9 +70,9 @@ const MyResume = () => {
       }
     } catch (error) {
       console.error('Failed to load resume data:', error);
-      const errorMessage = error instanceof Error ? error.message : "Unknown error";
-      toast.error("Failed to load resume data", {
-        description: `Could not load your resume information: ${errorMessage}`
+      const errorMessage = error instanceof Error ? error.message : t('myResume.errors.unknown');
+      toast.error(t('myResume.toast.loadError'), {
+        description: `${t('myResume.errors.loadDescription')}: ${errorMessage}`
       });
       setResumes([]);
     } finally {
@@ -86,18 +88,18 @@ const MyResume = () => {
     if (!e.target.files || e.target.files.length === 0) return;
     
     const file = e.target.files[0];
-    // Check file type - 只允许PDF
+    // Check file type - only allow PDF
     if (file.type !== 'application/pdf') {
-      toast.error("Invalid file type", {
-        description: "Please upload a PDF document only"
+      toast.error(t('myResume.errors.invalidFileType'), {
+        description: t('myResume.errors.pdfOnly')
       });
       return;
     }
 
-    // Check file size (max 10MB，与后端一致)
+    // Check file size (max 10MB, consistent with backend)
     if (file.size > 10 * 1024 * 1024) {
-      toast.error("File too large", {
-        description: "Maximum file size is 10MB"
+      toast.error(t('myResume.toast.fileTooLarge'), {
+        description: t('myResume.errors.maxFileSize')
       });
       return;
     }
@@ -105,7 +107,7 @@ const MyResume = () => {
     setIsUploading(true);
     
     try {
-  // 如果已有简历，使用更新接口，否则使用上传接口
+  // If resume exists, use update API, otherwise use upload API
   const resumeUrl = resumes.length > 0
     ? await ResumeService.updateResume(file)
     : await ResumeService.uploadResume(file);
@@ -115,8 +117,8 @@ const MyResume = () => {
   // 加载简历信息（更新 resumeInfo）
   await loadResumeData();
 
-  toast.success("Resume uploaded successfully", {
-    description: "Your resume is now active and being processed"
+  toast.success(t('myResume.toast.uploadSuccess'), {
+    description: t('myResume.toast.uploadSuccessDescription')
   });
 
   // 获取推荐岗位 —— 注意 resumeInfo 是异步更新的，确保加载完毕后再获取 studentId
@@ -128,8 +130,8 @@ const MyResume = () => {
       const jobs = await JobService.getRecommendedJobs(studentId);
       console.log("Recommended jobs:", jobs);
 
-      toast.success("Job recommendations ready", {
-        description: "AI has recommended positions for you"
+      toast.success(t('myResume.toast.jobRecommendationsReady'), {
+        description: t('myResume.toast.aiRecommendations')
       });
 
       // 你可以在这里存入状态或跳转页面展示
@@ -148,8 +150,8 @@ const MyResume = () => {
 } catch (error) {
   console.error('Upload error:', error);
   const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
-  toast.error("Upload failed", {
-    description: `Failed to upload resume: ${errorMessage}`
+  toast.error(t('myResume.toast.uploadError'), {
+    description: `${t('myResume.errors.uploadFailed')}: ${errorMessage}`
   });
 
 } finally {
@@ -175,13 +177,13 @@ const viewResume = async (url: string) => {
     const fileUrl = `/api/files/uploads/resumes/${studentId}/${fileName}`;
     window.open(fileUrl, '_blank');
 
-    toast.success("Opening resume", {
-      description: "Your resume is opening in a new tab"
+    toast.success(t('myResume.toast.openingResume'), {
+      description: t('myResume.toast.openingInNewTab')
     });
 
   } catch (error) {
-    toast.error("Failed to open resume", {
-      description: error instanceof Error ? error.message : "Could not open the resume file"
+    toast.error(t('myResume.toast.openResumeError'), {
+      description: error instanceof Error ? error.message : t('myResume.errors.couldNotOpenResume')
     });
   } finally {
     setViewingResume(null);

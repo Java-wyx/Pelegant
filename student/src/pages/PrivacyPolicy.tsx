@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
 const PrivacyPolicy = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   
   const containerVariants = {
@@ -43,7 +45,7 @@ const PrivacyPolicy = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-semibold text-foreground">Privacy Policy</h1>
+          <h1 className="text-xl font-semibold text-foreground">{t('privacy.title')}</h1>
         </motion.div>
         
         <motion.div 
@@ -51,46 +53,37 @@ const PrivacyPolicy = () => {
         >
           <Card className="border-none shadow-sm">
             <CardHeader className="pb-2">
-              <h2 className="text-lg font-medium">Our Privacy Commitment</h2>
+              <h2 className="text-lg font-medium">{t('privacy.sections.commitment.title')}</h2>
             </CardHeader>
             <CardContent className="space-y-4 text-sm">
-              <p>
-                We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our application and tell you about your privacy rights and how the law protects you.
-              </p>
+              <p>{t('privacy.sections.commitment.content')}</p>
               
-              <h3 className="font-medium text-base mt-4">Information We Collect</h3>
-              <p>
-                We collect information that you provide directly to us, such as when you create or modify your account, request services, or contact customer support. This may include:
-              </p>
+              <h3 className="font-medium text-base mt-4">{t('privacy.sections.collection.title')}</h3>
+              <p>{t('privacy.sections.collection.content')}</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Personal identification information (Name, email address, phone number)</li>
-                <li>Profile information (Resume, professional details, preferences)</li>
-                <li>Account credentials</li>
+                {(t('privacy.sections.collectionItems', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
               
-              <h3 className="font-medium text-base mt-4">How We Use Your Information</h3>
+              <h3 className="font-medium text-base mt-4">{t('privacy.sections.usage.title')}</h3>
+              <p>{t('privacy.sections.usage.content')}</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>To provide, maintain, and improve our services</li>
-                <li>To process and complete transactions</li>
-                <li>To send you technical notices and support messages</li>
-                <li>To respond to your comments, questions, and customer service requests</li>
+                {(t('privacy.sections.usageItems', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
               
-              <h3 className="font-medium text-base mt-4">Your Rights</h3>
-              <p>
-                You have the right to:
-              </p>
+              <h3 className="font-medium text-base mt-4">{t('privacy.sections.rights.title')}</h3>
+              <p>{t('privacy.sections.rights.content')}</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Access your personal data</li>
-                <li>Request correction of your personal data</li>
-                <li>Request deletion of your personal data</li>
-                <li>Object to processing of your personal data</li>
-                <li>Request restriction of processing your personal data</li>
-                <li>Request transfer of your personal data</li>
+                {(t('privacy.sections.rightsItems', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
               
               <p className="text-muted-foreground text-xs mt-6">
-                Last updated: April 3, 2025
+                {t('privacy.lastUpdated', { date: '2025年4月3日' })}
               </p>
             </CardContent>
           </Card>

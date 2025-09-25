@@ -1,0 +1,243 @@
+{
+  "editProfile": {
+    "title": "Modifier le profil",
+    "avatar": {
+      "change": "Appuyez pour changer votre photo de profil",
+      "uploadSuccess": "Photo de profil mise à jour avec succès",
+      "uploadError": "Échec du téléchargement de la photo de profil"
+    },
+    "form": {
+      "nickname": {
+        "label": "Pseudo",
+        "placeholder": "Entrez votre pseudo"
+      },
+      "gender": {
+        "label": "Genre",
+        "male": "Homme",
+        "female": "Femme",
+        "other": "Autre"
+      },
+      "submit": "Enregistrer le profil",
+      "saving": "Enregistrement..."
+    },
+    "toast": {
+      "success": {
+        "title": "Succès",
+        "description": "Le profil a été mis à jour avec succès"
+      },
+      "error": {
+        "title": "Erreur",
+        "loadError": "Échec du chargement des données du profil",
+        "saveError": "Échec de la mise à jour du profil",
+        "validation": {
+          "nicknameRequired": "Veuillez fournir un pseudo"
+        }
+      }
+    }
+  },
+  "changePassword": {
+    "title": "Changer le mot de passe",
+    "description": "Créez un mot de passe fort avec des lettres, des chiffres et des symboles",
+    "form": {
+      "currentPassword": {
+        "label": "Mot de passe actuel",
+        "placeholder": "Entrez votre mot de passe actuel"
+      },
+      "newPassword": {
+        "label": "Nouveau mot de passe",
+        "placeholder": "Entrez un nouveau mot de passe"
+      },
+      "confirmPassword": {
+        "label": "Confirmer le mot de passe",
+        "placeholder": "Confirmez votre nouveau mot de passe"
+      },
+      "submit": "Mettre à jour le mot de passe",
+      "updating": "Mise à jour..."
+    },
+    "passwordStrength": {
+      "weak": "Mot de passe trop faible",
+      "medium": "Mot de passe moyen",
+      "strong": "Mot de passe fort"
+    },
+    "toast": {
+      "success": {
+        "title": "Succès",
+        "description": "Le mot de passe a été modifié avec succès"
+      },
+      "error": {
+        "title": "Erreur",
+        "fieldsRequired": "Veuillez remplir tous les champs",
+        "passwordsNotMatch": "Les nouveaux mots de passe ne correspondent pas",
+        "default": "Échec du changement de mot de passe"
+      }
+    }
+  },
+  "accountSecurity": {
+    "title": "Sécurité du compte",
+    "items": {
+      "changePassword": {
+        "label": "Changer le mot de passe",
+        "description": "Mettre à jour le mot de passe de votre compte"
+      },
+      "privacySettings": {
+        "label": "Paramètres de confidentialité",
+        "description": "Gérez vos données et votre confidentialité"
+      }
+    }
+  },
+  "common": {
+    "saving": "Enregistrement...",
+    "loading": "Chargement...",
+    "back": "Retour"
+  },
+  "login": {
+    "title": "Connexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "submitting": "Connexion...",
+    "forgotPassword": "Mot de passe oublié ?",
+    "success": "Connexion réussie",
+    "welcome": "Bienvenue, {{name}} !",
+    "error": {
+      "default": "Échec de la connexion",
+      "invalidCredentials": "Identifiant ou mot de passe incorrect",
+      "invalidFormat": "Format invalide : le nom d'utilisateur doit être alphanumérique"
+    },
+    "tryAgain": "Réessayer",
+    "passwordChange": {
+      "title": "Changer votre mot de passe initial",
+      "description": "Pour une meilleure sécurité, nous vous recommandons de changer votre mot de passe avant de continuer.",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "updateButton": "Mettre à jour le mot de passe",
+      "updating": "Mise à jour...",
+      "skipButton": "Passer et continuer vers le profil",
+      "success": "Mot de passe modifié",
+      "successMessage": "Votre mot de passe a été mis à jour avec succès.",
+      "error": "Échec du changement de mot de passe",
+      "errorMessage": "Échec de la mise à jour du mot de passe. Veuillez réessayer."
+    }
+  },
+  "profile": {
+    "menu": {
+      "myJobs": "Mes emplois",
+      "myJobsDescription": "Voir les emplois postulés et enregistrés",
+      "myResume": "Mon CV",
+      "myResumeDescription": "Voir et mettre à jour votre CV",
+      "accountSecurity": "Sécurité du compte",
+      "accountSecurityDescription": "Mettre à jour le mot de passe et les paramètres de sécurité",
+      "helpSupport": "Aide & Support",
+      "helpSupportDescription": "Obtenir de l'aide ou contacter le support"
+    },
+    "logout": "Déconnexion",
+    "logoutSuccess": "Vous avez été déconnecté",
+    "redirecting": "Redirection vers la page de connexion...",
+    "defaultName": "Utilisateur"
+  },
+  "language": {
+    "title": "Langue",
+    "english": "English (Anglais)",
+    "chinese": "中文 (Chinois)",
+    "spanish": "Español (Espagnol)",
+    "french": "Français",
+    "hindi": "हिन्दी (Hindi)",
+    "changeSuccess": "Langue changée avec succès"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "appearance": "Apparence",
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair",
+    "help": "Aide",
+    "helpDescription": "Centre d'aide et support"
+  },
+  "helpSupport": {
+    "title": "Aide & Support",
+    "items": {
+      "termsOfUse": {
+        "label": "Conditions d'utilisation",
+        "description": "Lisez nos conditions d'utilisation"
+      },
+      "privacyPolicy": {
+        "label": "Politique de confidentialité",
+        "description": "Découvrez comment nous gérons vos données"
+      },
+      "feedback": {
+        "label": "Retour d'information",
+        "description": "Donnez-nous votre avis"
+      }
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "sections": {
+      "commitment": {
+        "title": "Notre engagement en matière de confidentialité",
+        "content": "Nous nous engageons à protéger votre vie privée et à assurer la sécurité de vos informations personnelles. Cette Politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez nos services."
+      },
+      "collection": {
+        "title": "Informations que nous collectons",
+        "content": "Nous pouvons collecter les types d'informations suivants :",
+        "items": [
+          "Informations d'identification personnelle (nom, e-mail, numéro de téléphone, etc.)",
+          "CV et historique professionnel",
+          "Préférences d'emploi et historique des candidatures",
+          "Informations sur l'appareil et l'utilisation"
+        ]
+      },
+      "usage": {
+        "title": "Comment nous utilisons vos informations",
+        "content": "Nous utilisons vos informations pour :",
+        "items": [
+          "Fournir et améliorer nos services",
+          "Vous mettre en relation avec des opportunités d'emploi pertinentes",
+          "Vous contacter concernant votre compte et des opportunités",
+          "Analyser et améliorer notre plateforme"
+        ]
+      },
+      "rights": {
+        "title": "Vos droits",
+        "content": "Vous avez le droit de :",
+        "items": [
+          "Accéder à vos informations personnelles",
+          "Demander la rectification de vos informations",
+          "Demander la suppression de vos informations",
+          "Vous opposer aux communications marketing"
+        ]
+      }
+    },
+    "lastUpdated": "Dernière mise à jour : {{date}}"
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "intro": "Veuillez lire attentivement les conditions d'utilisation suivantes avant d'utiliser notre application.",
+    "lastUpdated": "Dernière mise à jour : {{date}}",
+    "acceptance": {
+      "title": "Acceptation des conditions",
+      "content": "En accédant ou en utilisant notre service, vous acceptez d'être lié par ces Conditions d'utilisation. Si vous n'êtes pas d'accord avec ces conditions, veuillez ne pas utiliser notre service."
+    },
+    "accounts": {
+      "title": "Comptes utilisateur",
+      "content": "Vous êtes responsable de la confidentialité des informations de votre compte et de toutes les activités qui se produisent sous votre compte."
+    },
+    "content": {
+      "title": "Directives de contenu",
+      "content": "Les utilisateurs ne doivent pas publier de contenu illégal, nuisible, menaçant, abusif, harcelant, diffamatoire ou autrement répréhensible."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "content": "Votre utilisation de nos services est également régie par notre Politique de confidentialité, qui décrit comment nous collectons, utilisons et protégeons vos informations."
+    },
+    "modifications": {
+      "title": "Modifications du service",
+      "content": "Nous nous réservons le droit de modifier ou d'interrompre le service à tout moment, temporairement ou définitivement, avec ou sans préavis."
+    },
+    "termination": {
+      "title": "Résiliation",
+      "content": "Nous pouvons résilier ou suspendre votre compte immédiatement, sans préavis, pour quelque raison que ce soit, y compris en cas de violation des Conditions d'utilisation."
+    }
+  }
+}
