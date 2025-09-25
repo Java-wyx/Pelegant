@@ -76,13 +76,6 @@ console.log(avatarUrl)
       description: t('settings.title'),
       color: "text-blue-500 dark:text-blue-400",
       route: "/settings"
-    },
-    { 
-      icon: HelpCircle, 
-      label: t('profile.menu.helpSupport'), 
-      description: t('profile.menu.helpSupportDescription'),
-      color: "text-emerald-500 dark:text-emerald-400",
-      route: "/help-support"
     }
   ];
 

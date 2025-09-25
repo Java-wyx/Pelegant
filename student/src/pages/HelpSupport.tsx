@@ -62,7 +62,7 @@ const HelpSupport = () => {
           className="flex items-center mb-6"
         >
           <button 
-            onClick={() => navigate("/profile")}
+            onClick={() => navigate("/settings")}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 mr-3"
           >
             <ArrowLeft className="h-5 w-5" />

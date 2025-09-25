@@ -71,36 +71,12 @@ const Settings = (): JSX.Element => {
       action: toggleTheme
     },
     {
-      id: 'notifications',
-      icon: Bell,
-      label: t('settings.notifications'),
-      description: t('settings.notificationsDescription'),
-      color: "text-purple-500 dark:text-purple-400",
-      route: "/settings/notifications"
-    },
-    {
-      id: 'privacy',
-      icon: Lock,
-      label: t('settings.privacy'),
-      description: t('settings.privacyDescription'),
-      color: "text-red-500 dark:text-red-400",
-      route: "/settings/privacy"
-    },
-    {
       id: 'help',
       icon: HelpCircle,
       label: t('settings.help'),
       description: t('settings.helpDescription'),
       color: "text-emerald-500 dark:text-emerald-400",
       route: "/help-support"
-    },
-    {
-      id: 'about',
-      icon: Info,
-      label: t('settings.about'),
-      description: t('settings.aboutDescription'),
-      color: "text-blue-500 dark:text-blue-400",
-      route: "/about"
     }
   ];
 
@@ -131,7 +107,7 @@ const Settings = (): JSX.Element => {
         {/* Header */}
         <div className="flex items-center mb-6">
           <button 
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/profile')}
             className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label={t('common.back')}
           >
