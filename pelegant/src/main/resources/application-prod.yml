@@ -1,0 +1,119 @@
+server:
+  port: 8080
+  connection:
+    timeout: 60000         # 连接超时，单位毫秒，默认一般是几秒
+  tomcat:
+    max-swallow-size: 104857600    # 允许最大请求体大小，单位字节（100MB）
+
+spring:
+  profiles:
+    active: prod
+  # MongoDB配置
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: Pelegant
+      # 如果MongoDB需要认证，取消下面注释并填写用户名密码
+      # username: your_username
+      # password: your_password
+      # authentication-database: admin
+
+
+  redis:
+    host: localhost   # Redis 服务器地址
+    port: 6379        # Redis 端口
+    password:       # 如果你有密码就填上
+    timeout: 6000ms
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+
+  # 文件上传配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+      file-size-threshold: 2KB
+
+  # 邮件配置
+  mail:
+    host: smtphz.qiye.163.com
+    port: 465
+    username: bzjupdate@fzfnn.xyz
+    password: zhkscNvVCHwmm29J
+    from: bzjupdate@fzfnn.xyz
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+  # 日志配置
+  application:
+    name: pelegant
+
+logging:
+  config: classpath:log4j2-prod.xml
+  #  file:
+  #    name: D:\\pelegant\\logs\\application.log  # 绝对路径
+  level:
+    org.springframework.data.mongodb: DEBUG
+    com.x.pelegant: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# SpringDoc OpenAPI 配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  packages-to-scan: com.x.pelegant.controller
+
+# JWT配置
+jwt:
+  secret: pelegant-jwt-secret-key-2024-very-long-secret-for-security
+  expiration: 604800000 # 7天 (7 * 24 * 60 * 60 * 1000)
+  student-header: student
+  teacher-header: teacher
+  project-header: project
+  token-prefix: "Bearer "
+
+# Coze AI配置
+coze:
+  api:
+    url: https://api.coze.cn/v1/workflow/run
+    token: pat_2ib9RHi1qyxHOQErGytgRYpmEnzl3AXM2x2Xc6NjUcLRBahhDf7F8jPl6Op1fUeG
+  app:
+    id: 7515373428439105576
+  workflow:
+    id: 7523409802166009906
+  # 公网访问地址配置（用于Coze访问本地文件）
+  public:
+    url:   http://pelegant.info:8080 # 请替换为实际的ngrok URL
+
+# 自定义配置项，用于指定上传文件的存储路径
+pelegant:
+  upload:
+    path: /var/pelegant/uploads/
+
+  employment:
+    keywords:
+      config: employment_keywords.json
+  education:
+    keywords:
+      config: education_system.json
+  log: duplicate_jobs.log

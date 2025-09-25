@@ -1,0 +1,209 @@
+[
+  {
+    "sector": "Financial",
+    "industry": "Banking",
+    "subIndustry": "Commercial Bank",
+    "keywords": [
+      "HSBC", "Hang Seng Bank", "Bank of China", "BOC", "BOC International", "Standard Chartered Bank", "DBS Bank", "Mizuho Bank", "MUFG", "Airstar Bank Limited", "PAO Bank Limited", "Mox Bank", "ZA Bank", "Citibank", "ICBC", "CCB", "Bank of East Asia",
+      "commercial bank", "retail bank", "consumer bank", "digital bank", "virtual bank", "neobank", "savings bank", "community bank",
+      "banking services", "personal banking", "business banking", "corporate banking", "private banking",
+      "current account", "savings account", "checking account", "time deposit", "fixed deposit",
+      "mortgage", "loan", "credit", "overdraft", "financing", "贷款", "按揭", "信贷", "融资",
+      "wealth management", "investment product", "insurance product",
+      "remittance", "wire transfer", "跨境汇款",
+      "debit card", "credit card", "银行卡", "信用卡", "借记卡",
+      "online banking", "mobile banking", "internet banking", "網上銀行", "手机银行",
+      "branch", "ATM", "自动柜员机",
+      "银行", "金融", "银行业", "商业银行", "零售银行", "数字银行", "虚拟银行"
+    ]
+  },
+  {
+    "sector": "Financial",
+    "industry": "Banking",
+    "subIndustry": "Investment Bank",
+    "keywords": [
+      "JPMorganChase", "J.P. Morgan", "Goldman Sachs", "Macquarie", "Morgan Stanley", "UBS", "Nomura", "Citi", "Credit Suisse", "Deutsche Bank", "Bank of America Merrill Lynch", "BNP Paribas", "CLSA", "CICC",
+      "investment bank", "investment banking", "merchant bank", "bulge bracket", "boutique bank",
+      "M&A", "mergers and acquisitions", "并购",
+      "ECM", "equity capital markets", "IPO", "initial public offering", "listing", "上市", "新股发行",
+      "DCM", "debt capital markets", "bond issuance", "debenture", "债券发行",
+      "underwriting", "承销",
+      "sales and trading", "equity research", "analyst", "institutional sales",
+      "derivatives", "structured product", "衍生品", "结构性产品",
+      "advisory", "financial advisory", "咨询",
+      "private equity", "venture capital", "PE", "VC", "私募股权", "风险投资",
+      "prime brokerage", "prime services",
+      "prop trading", "proprietary trading",
+      "投资银行", "投行", "券商", "证券行", "金融"
+    ]
+  },
+  {
+    "sector": "Financial",
+    "industry": "Insurance",
+    "subIndustry": null,
+    "keywords": [
+      "AXA", "AIA", "AIA Australia", "Prudential", "Prudential Plc", "Sun Life", "Sun Life Hong Kong Ltd", "FWD", "FWD Insurance", "Zurich", "Zurich Insurance", "Allianz", "Manulife", "Blue Cross", "Bupa", "Chubb",
+      "insurance", "insurer", "insurance company", "insurance provider", "insurance broker", "insurance agent",
+      "life insurance", "whole life", "term life", "人寿保险", "终身寿险", "定期寿险",
+      "health insurance", "medical insurance", "hospitalization", "医疗保险", "住院保险",
+      "critical illness insurance", "CI", "危疾保险",
+      "accident insurance", "意外保险",
+      "travel insurance", "旅游保险",
+      "home insurance", "property insurance", "家居保险",
+      "car insurance", "motor insurance", "汽车保险",
+      "annuity", "年金",
+      "underwriting", "核保",
+      "claim", "理赔",
+      "policy", "premium", "保单", "保费",
+      "insurance plan", "保障计划",
+      "reinsurance", "再保险",
+      "保险", "保险公司", "保险业", "承保商"
+    ]
+  },
+  {
+    "sector": "Financial",
+    "industry": "Securities",
+    "subIndustry": null,
+    "keywords": [
+      "Bloomberg", "Reuters", "CICC", "Citadel", "Bridgewater", "Two Sigma", "Jane Street", "Optiver", "Flow Traders", "Hong Kong Exchange", "HKEX", "Hong Kong Exchanges & Clearing Ltd", "Shanghai Stock Exchange", "SZSE", "NYSE", "NASDAQ",
+      "securities", "securities firm", "brokerage", "broker", "stockbroker", "券商", "证券行", "经纪行",
+      "stock", "share", "equity", "股票", "股份",
+      "bond", "fixed income", "债券", "固定收益",
+      "fund", "mutual fund", "ETF", "hedge fund", "基金", "互惠基金", "交易所买卖基金", "对冲基金",
+      "derivatives", "futures", "options", "warrant", "牛熊证", "衍生工具", "期货", "期权",
+      "trading", "stock trading", "algorithmic trading", "quant trading", "交易", "股票交易", "量化交易",
+      "investment research", "market analysis", "投资研究", "市场分析",
+      "wealth management", "asset management", "财富管理", "资产管理",
+      "custody services", "存管服务",
+      "margin financing", "融资融券",
+      "证券", "证券交易所", "金融市场"
+    ]
+  },
+  {
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "AI",
+    "keywords": [
+      "Fano Labs", "Fano Labs Limited", "SenseTime", "商汤科技", "Megvii", "旷视科技", "Google AI", "OpenAI", "Microsoft Azure AI", "IBM Watson", "Pure Hong Kong", "Cyberlab Tech Services Company Limited",
+      "AI", "artificial intelligence", "generative AI", "GenAI", "machine learning", "ML", "deep learning", "neural network", "NLP", "natural language processing", "computer vision", "predictive analytics",
+      "algorithm", "model training", "data mining", "big data", "algorithmic decision making",
+      "chatbot", "virtual assistant", "intelligent assistant", "对话机器人", "智能助手",
+      "automation", "intelligent automation", "robotic process automation", "RPA",
+      "AI platform", "AI solution", "AI service", "AI model", "AI development",
+      "MLOps", "model deployment",
+      "ethical AI", "responsible AI",
+      "人工智能", "AI人工智能", "机器学习", "深度学习", "神经网络", "自然语言处理", "计算机视觉", "智能软件", "算法", "大数据"
+    ]
+  },
+  {
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "Cybersecurity",
+    "keywords": [
+      "Fortinet", "Check Point", "Checkpoint Systems Limited", "Palo Alto Networks", "CrowdStrike", "Symantec", "McAfee", "Trend Micro", "Kaspersky", "Cyberlab Tech Services Company Limited", "Tencent Security", "奇安信", "360 Security", "三六零",
+      "cybersecurity", "cyber security", "information security", "InfoSec", "network security", "cloud security", "data security", "endpoint security", "application security",
+      "firewall", "next-generation firewall", "NGWF", "防火墙",
+      "SIEM", "security information and event management", "安全信息和事件管理",
+      "XDR", "extended detection and response", "扩展检测与响应",
+      "SOC", "security operations center", "安全运营中心",
+      "threat intelligence", "威胁情报",
+      "vulnerability management", "penetration testing", "pentest", "渗透测试",
+      "encryption", "数据加密",
+      "identity and access management", "IAM", "身份与访问管理",
+      "zero trust", "零信任",
+      "ransomware", "phishing", "malware", "病毒", "木马", "黑客",
+      "security audit", "compliance", "等保", "GDPR", "安全合规",
+      "网络安全", "信息安全", "云安全", "数据安全", "终端安全", "安全防护", "黑客防护"
+    ]
+  },
+  {
+    "sector": "Healthcare",
+    "industry": "Hospitals",
+    "subIndustry": null,
+    "keywords": [
+      "香港中醫醫院", "CUHK MEDICAL CENTRE", "Hong Kong Sanatorium & Hospital", "养和医院", "Queen Mary Hospital", "玛丽医院", "Prince of Wales Hospital", "威爾斯親王醫院", "St. Teresa's Hospital", "聖德肋撒醫院", "Adventist Hospital", "港安医院", "Canossa Hospital", "嘉諾撒醫院",
+      "hospital", "medical centre", "medical center", "clinic", "polyclinic", "outpatient clinic", "day surgery centre", "surgery center",
+      "public hospital", "private hospital", "私立医院", "公立医院",
+      "general hospital", "specialty hospital", "专科医院",
+      "maternity hospital", "women and children's hospital", "妇婴医院",
+      "teaching hospital", "university hospital", "医学院附属医院",
+      "patient care", "inpatient", "outpatient", "emergency room", "ER", "accident & emergency", "A&E", "住院", "门诊", "急诊",
+      "surgery", "operation", "手术",
+      "diagnosis", "medical examination", "体检", "诊断",
+      "pharmacy", "dispensary", "药房",
+      "nursing", "medical staff", "doctor", "physician", "surgeon", "specialist", "nurse", "医护人员", "医生", "护士",
+      "医院", "医疗中心", "诊所", "医疗机构", "healthcare provider", "医疗服务"
+    ]
+  },
+  {
+    "sector": "Healthcare",
+    "industry": "Pharmaceuticals",
+    "subIndustry": null,
+    "keywords": [
+      "Takeda Pharmaceuticals", "Novartis", "Pfizer", "Johnson & Johnson", "J&J", "Roche", "AstraZeneca", "AZ", "Sanofi", "GSK", "GlaxoSmithKline", "Merck", "MSD", "AbbVie", "Bayer", "国药集团", "Sinopharm", "石药集团", "CSPC Pharmaceutical Group",
+      "pharmaceutical", "pharma", "biopharmaceutical", "biopharma", "drug", "medication", "medicine", "prescription drug", "over-the-counter", "OTC",
+      "generic drug", "branded drug", "原研药", "仿制药",
+      "vaccine", "vaccination", "疫苗",
+      "biologics", "antibody", "monoclonal antibody",
+      "R&D", "research and development", "drug discovery", "clinical trial", "phase I", "phase II", "phase III", "临床试验",
+      "manufacturing", "API", "active pharmaceutical ingredient", "production",
+      "regulatory affairs", "FDA", "NMPA", "国家药监局", "CFDA",
+      "pharmacist", "药剂师",
+      "药企", "制药", "生物制药", "药品", "医药行业", "药业"
+    ]
+  },
+  {
+    "sector": "Retail",
+    "industry": "E-commerce",
+    "subIndustry": null,
+    "keywords": [
+      "Shopline", "SHOPLINE", "Alibaba", "Alibaba.com", "AliExpress", "Taobao", "淘宝", "Tmall", "天猫", "JD.com", "京东", "Amazon", "eBay", "Payoneer", "Stripe", "PingPong", "Trip.com", "Ctrip", "携程", "Klook", "Foodpanda", "Deliveroo", "户户送",
+      "e-commerce", "ecommerce", "online retail", "online store", "online shop", "web shop", "internet shop", "digital storefront",
+      "marketplace", "digital marketplace", "platform", "B2C", "B2B", "C2C", "O2O",
+      "social commerce", "live streaming commerce", "直播带货",
+      "cross-border e-commerce", "跨境电商",
+      "logistics", "fulfillment", "warehouse", "inventory management", "supply chain", "供应链", "物流",
+      "payment gateway", "payment processing", "online payment", "digital payment", "移动支付",
+      "shopping cart", "checkout",
+      "user experience", "UX", "customer journey",
+      "digital marketing", "SEO", "SEM", "social media marketing", "SMM", "email marketing",
+      "电商", "电子商务", "网上商城", "网购", "线上购物", "平台", "网店"
+    ]
+  },
+  {
+    "sector": "Construction",
+    "industry": "Architecture",
+    "subIndustry": null,
+    "keywords": [
+      "AECOM", "Mace Group", "Arcadis", "Gensler", "SOM", "KPF", "Kohn Pedersen Fox", "DP Architects", "王董建筑师事务有限公司", "Wong Tung & Partners", "吕元祥建筑师事务所", "RLP", "Ronald Lu & Partners",
+      "architecture", "architectural firm", "architectural design", "building design", "urban design", "master planning", "town planning", "city planning",
+      "interior design", "landscape design", "landscape architecture", "室内设计", "景观设计",
+      "BIM", "Building Information Modeling", "建筑信息模型",
+      "sustainable design", "green building", "LEED", "BEAM Plus", "可持续设计", "绿色建筑",
+      "planning permission", "building permit", "planning submission", "图纸审批",
+      "feasibility study", "design development", "construction documents", "technical design",
+      "project management", "contract administration", "site supervision",
+      "建筑师", "建筑设计", "规划设计", "城市规划", "建筑设计事务所", "建筑咨询"
+    ]
+  },
+  {
+    "sector": "Real Estate",
+    "industry": "Property Development",
+    "subIndustry": null,
+    "keywords": [
+      "CK Asset Holdings Limited", "Sun Hung Kai Properties", "SHKP", "新鸿基地产", "Henderson Land", "恒基兆业", "New World Development", "新世界发展", "Sino Group", "信和集团", "Hongkong Land", "Swire Properties", "太古地产", "Wheelock Properties", "会德丰地产",
+      "property developer", "real estate developer", "land developer", "developer",
+      "real estate", "property", "realty",
+      "residential development", "apartment", "condominium", "condo", "housing estate", "住宅", "公寓", "屋苑",
+      "commercial development", "office building", "office tower", "retail mall", "shopping centre", "shopping mall", "商业项目", "写字楼", "商场",
+      "mixed-use development", "综合发展项目",
+      "land acquisition", "土地收购",
+      "project planning", "项目规划",
+      "construction", "building", "建筑施工",
+      "sales and marketing", "pre-sale", "first-hand property", "一手楼", "楼盘销售",
+      "property management", "facilities management", "物业管理",
+      "investment property", "地产投资",
+      "地产商", "房地产开发", "房产", "楼盘", "房地产发展", "房地产业"
+    ]
+  }
+]

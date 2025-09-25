@@ -1,0 +1,38 @@
+{
+  "auth": {
+    "title": "Project Management System",
+    "subtitle": "Please enter your email and password to sign in.",
+    "action": {
+      "login": "Sign in",
+      "loggingIn": "Signing in..."
+    },
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email address",
+        "invalid": "Please enter a valid email address"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password",
+        "min": "Password must be at least {{min}} characters",
+        "show": "Show password",
+        "hide": "Hide password"
+      }
+    },
+    "toast": {
+      "success": {
+        "title": "Signed in",
+        "desc": "Welcome to the project management system"
+      },
+      "error": {
+        "title": "Sign in failed",
+        "descGeneric": "Email or password is incorrect. Please try again.",
+        "console": "Sign in failed:"
+      }
+    },
+    "footer": {
+      "note": "This system requires authorization. Contact the administrator if you need help."
+    }
+  }
+}

@@ -19,6 +19,7 @@ dist-ssr
 # ========== Java/Maven/Gradle ==========
 HELP.md
 target/
+uploads/
 !**/src/main/**/target/
 !**/src/test/**/target/
 

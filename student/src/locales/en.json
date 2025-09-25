@@ -1,0 +1,32 @@
+{
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign In",
+    "submitting": "Signing in...",
+    "forgotPassword": "Forgot password?",
+    "success": "Login successful",
+    "welcome": "Welcome back, {{name}}!",
+    "error": {
+      "default": "Login failed",
+      "invalidCredentials": "Invalid username or password",
+      "invalidFormat": "Invalid request: username must be alphanumeric"
+    },
+    "tryAgain": "Try Again",
+    "passwordChange": {
+      "title": "Change Your Initial Password",
+      "description": "For better security, we recommend changing your password before continuing setup.",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "updateButton": "Update Password",
+      "updating": "Updating...",
+      "skipButton": "Skip & Continue to Profile Setup",
+      "success": "Password Changed",
+      "successMessage": "Your password has been updated successfully.",
+      "error": "Password Change Failed",
+      "errorMessage": "Failed to update password. Please try again."
+    }
+  }
+}
