@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Check } from 'lucide-react';
 import { fetchRoles } from '@/api/auth';
+import { useTranslation } from 'react-i18next';
 
 interface UserFormProps {
   onClose: () => void;
@@ -28,6 +29,7 @@ interface UserFormProps {
 }
 
 export const UserForm: React.FC<UserFormProps> = ({ onClose, onSave, editUser }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     username: editUser?.username || '',
     email: editUser?.email || '',
@@ -80,17 +82,17 @@ export const UserForm: React.FC<UserFormProps> = ({ onClose, onSave, editUser })
     const newErrors: {username?: string; email?: string; roleIds?: string} = {};
     
     if (!formData.username.trim()) {
-      newErrors.username = 'Username is required';
+      newErrors.username = t('users.form.validation.usernameRequired');
     }
-    
+
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('users.form.validation.emailRequired');
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = t('users.form.validation.emailInvalid');
     }
-    
+
     if (!formData.roleIds) {
-      newErrors.roleIds = 'Role is required';
+      newErrors.roleIds = t('users.form.validation.roleRequired');
     }
     
     setErrors(newErrors);
@@ -119,53 +121,50 @@ export const UserForm: React.FC<UserFormProps> = ({ onClose, onSave, editUser })
         onClose();
       }, 1500);
     } catch (error) {
-      setErrorMessage(error instanceof Error ? error.message : 'Operation failed');
+      setErrorMessage(error instanceof Error ? error.message : t('users.form.toast.operationFailed'));
     }
   };
 
-  return (
+   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader className="bg-gray-50">
         <CardTitle className="text-lg font-medium">
-          {editUser ? 'Edit User' : 'Add New User'}
+          {editUser ? t('users.form.title.edit') : t('users.form.title.add')}
         </CardTitle>
       </CardHeader>
-      
+
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4 pt-4">
           {errorMessage && (
             <Alert variant="destructive" className="mb-4">
-              <AlertDescription>
-                {errorMessage}
-              </AlertDescription>
+              <AlertDescription>{errorMessage}</AlertDescription>
             </Alert>
           )}
+
           {showSuccess && !errorMessage && (
             <Alert variant="success" className="mb-4">
               <Check className="h-4 w-4" />
               <AlertDescription>
-                User successfully {editUser ? 'updated' : 'created'}!
+                {editUser ? t('users.form.success.updated') : t('users.form.success.created')}
               </AlertDescription>
             </Alert>
           )}
-          
+
           <div className="space-y-1">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">{t('users.form.fields.username')}</Label>
             <Input
               id="username"
               name="username"
               value={formData.username}
               onChange={handleChange}
               className={errors.username ? 'border-red-500' : ''}
-              placeholder="Enter username"
+              placeholder={t('users.form.fields.usernamePlaceholder')}
             />
-            {errors.username && (
-              <p className="text-xs text-red-500 mt-1">{errors.username}</p>
-            )}
+            {errors.username && <p className="text-xs text-red-500 mt-1">{errors.username}</p>}
           </div>
-          
+
           <div className="space-y-1">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t('users.form.fields.email')}</Label>
             <Input
               id="email"
               name="email"
@@ -173,46 +172,36 @@ export const UserForm: React.FC<UserFormProps> = ({ onClose, onSave, editUser })
               value={formData.email}
               onChange={handleChange}
               className={errors.email ? 'border-red-500' : ''}
-              placeholder="Enter user email"
+              placeholder={t('users.form.fields.emailPlaceholder')}
             />
-            {errors.email && (
-              <p className="text-xs text-red-500 mt-1">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
           </div>
-          
+
           <div className="space-y-1">
-            <Label htmlFor="roleIds">Role</Label>
-            <Select 
-              value={formData.roleIds} 
-              onValueChange={(value) => handleSelectChange('roleIds', value)}
-            >
+            <Label htmlFor="roleIds">{t('users.form.fields.role')}</Label>
+            <Select value={formData.roleIds} onValueChange={value => handleSelectChange('roleIds', value)}>
               <SelectTrigger id="roleIds" className={errors.roleIds ? 'border-red-500' : ''}>
-                <SelectValue placeholder="Select a role" />
+                <SelectValue placeholder={t('users.form.fields.rolePlaceholder')} />
               </SelectTrigger>
               <SelectContent>
                 {roles.map(role => (
-                  <SelectItem key={role.name} value={role.name.toString()}>
+                  <SelectItem key={role.id} value={String(role.name)}>
+                    {/* 若有 code，可用 t(`roles.codes.${role.code}`, { defaultValue: role.name }) */}
                     {role.name}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            {errors.roleIds && (
-              <p className="text-xs text-red-500 mt-1">{errors.roleIds}</p>
-            )}
+            {errors.roleIds && <p className="text-xs text-red-500 mt-1">{errors.roleIds}</p>}
           </div>
         </CardContent>
-        
+
         <CardFooter className="flex justify-between border-t p-4 bg-gray-50">
-          <Button 
-            type="button" 
-            variant="outline" 
-            onClick={onClose}
-          >
-            Cancel
+          <Button type="button" variant="outline" onClick={onClose}>
+            {t('users.form.actions.cancel')}
           </Button>
           <Button type="submit">
-            {editUser ? 'Update User' : 'Create User'}
+            {editUser ? t('users.form.actions.update') : t('users.form.actions.create')}
           </Button>
         </CardFooter>
       </form>

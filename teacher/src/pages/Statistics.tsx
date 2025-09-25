@@ -16,6 +16,8 @@ import statisticsApi, {
   CompanyStats
 } from "@/api/statistics";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from 'react-i18next';
+
 
 const Statistics: React.FC = () => {
   const isMobile = useIsMobile();
@@ -26,6 +28,8 @@ const Statistics: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [studentStats, setStudentStats] = useState<StudentApplicationStatsResponse | null>(null);
   const [companyStats, setCompanyStats] = useState<CompanyApplicationStatsResponse | null>(null);
+  const { t } = useTranslation();
+
 
   // Fetch statistics data
   useEffect(() => {
@@ -43,13 +47,9 @@ const Statistics: React.FC = () => {
         setCompanyStats(companyData);
       } catch (err) {
         console.error('Error fetching statistics:', err);
-        const errorMessage = err instanceof Error ? err.message : 'Failed to fetch statistics data';
+        const errorMessage = err instanceof Error ? err.message : t('statistics.error.fetch');
         setError(errorMessage);
-        toast({
-          title: "Error",
-          description: errorMessage,
-          variant: "destructive",
-        });
+        toast({ title: t('statistics.common.error'), description: errorMessage, variant: 'destructive' });
       } finally {
         setLoading(false);
       }
@@ -98,9 +98,9 @@ const topFullTimeCompanies = companyStats?.companyStats
       <Table>
         <TableHeader className="bg-blue-50/70">
           <TableRow>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Rank</TableHead>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Company</TableHead>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Applications</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.rank')}</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.company')}</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.applications')}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -146,10 +146,10 @@ const topFullTimeCompanies = companyStats?.companyStats
       <Table>
         <TableHeader className="bg-blue-50/70">
           <TableRow>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{type === 'grade' ? 'Grade' : 'Major'}</TableHead>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Intern</TableHead>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Full Time</TableHead>
-            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">Total</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{type === 'grade' ? t('statistics.table.grade') : t('statistics.table.major')}</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.intern')}</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.fullTime')}</TableHead>
+            <TableHead className="text-gray-700 font-semibold whitespace-nowrap">{t('statistics.table.total')}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -197,7 +197,7 @@ const topFullTimeCompanies = companyStats?.companyStats
         <div className="w-full flex items-center justify-center min-h-[400px]">
           <div className="flex flex-col items-center space-y-4">
             <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
-            <p className="text-gray-600">Loading statistics data...</p>
+            <p className="text-gray-600">{t('statistics.loading')}</p>
           </div>
         </div>
       </Layout>
@@ -210,13 +210,13 @@ const topFullTimeCompanies = companyStats?.companyStats
       <Layout>
         <div className="w-full flex items-center justify-center min-h-[400px]">
           <div className="text-center space-y-4">
-            <div className="text-red-500 text-lg font-medium">Error Loading Statistics</div>
+            <div className="text-red-500 text-lg font-medium">{t('statistics.error.title')}</div>
             <p className="text-gray-600">{error}</p>
             <button
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              Retry
+              {t('statistics.actions.retry')}
             </button>
           </div>
         </div>
@@ -230,8 +230,8 @@ const topFullTimeCompanies = companyStats?.companyStats
       <Layout>
         <div className="w-full flex items-center justify-center min-h-[400px]">
           <div className="text-center space-y-4">
-            <div className="text-gray-500 text-lg font-medium">No Statistics Data Available</div>
-            <p className="text-gray-600">There is no statistics data to display at this time.</p>
+            <div className="text-gray-500 text-lg font-medium">{t('statistics.empty.title')}</div>
+            <p className="text-gray-600">{t('statistics.empty.desc')}</p>
           </div>
         </div>
       </Layout>
@@ -245,10 +245,10 @@ const topFullTimeCompanies = companyStats?.companyStats
         <Tabs defaultValue="students" className="space-y-6">
           <TabsList className={`w-full bg-blue-50/70 p-2 rounded-lg mb-4 ${isMobile ? 'flex' : ''}`}>
             <TabsTrigger value="students" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-career-blue px-4 py-3 text-sm md:text-base font-medium">
-              {isMobile ? 'Students' : 'Student Applications'}
+              {isMobile ? t('statistics.tabs.students.short') : t('statistics.tabs.students.long')}
             </TabsTrigger>
             <TabsTrigger value="enterprises" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-career-blue px-4 py-3 text-sm md:text-base font-medium">
-              {isMobile ? 'Enterprises' : 'Enterprise Applications'}
+              {isMobile ? t('statistics.tabs.enterprises.short') : t('statistics.tabs.enterprises.long')}
             </TabsTrigger>
           </TabsList>
           
@@ -258,10 +258,10 @@ const topFullTimeCompanies = companyStats?.companyStats
             <Tabs defaultValue="grade" className="space-y-6">
               <TabsList className="inline-flex w-auto bg-gray-100/70 p-1 rounded-lg">
                 <TabsTrigger value="grade" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 px-4 py-2">
-                  By Grade
+                  {t('statistics.studentTabs.byGrade')}
                 </TabsTrigger>
                 <TabsTrigger value="major" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 px-4 py-2">
-                  By Major
+                  {t('statistics.studentTabs.byMajor')}
                 </TabsTrigger>
               </TabsList>
 
@@ -270,7 +270,7 @@ const topFullTimeCompanies = companyStats?.companyStats
                 {/* By Grade Detail Table - Now full width */}
                 <Card className="shadow-md border-blue-50 hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium text-gray-700">Grade Distribution</CardTitle>
+                    <CardTitle className="text-lg font-medium text-gray-700">{t('statistics.studentCards.gradeDistribution')}</CardTitle>
                   </CardHeader>
                   <CardContent className="px-0 sm:px-6">
                     {renderDistributionTable(studentGradeData, 'grade', 500, 500)}
@@ -283,7 +283,7 @@ const topFullTimeCompanies = companyStats?.companyStats
                 {/* By Major Detail Table */}
                 <Card className="shadow-md border-blue-50 hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium text-gray-700">Major Distribution</CardTitle>
+                    <CardTitle className="text-lg font-medium text-gray-700">{t('statistics.studentCards.majorDistribution')}</CardTitle>
                   </CardHeader>
                   <CardContent className="px-0 sm:px-6">
                     {renderDistributionTable(studentMajorData, 'major', 600, 400)}
@@ -299,10 +299,10 @@ const topFullTimeCompanies = companyStats?.companyStats
             <Tabs defaultValue="full-time" className="space-y-6">
               <TabsList className="inline-flex w-auto bg-gray-100/70 p-1 rounded-lg">
                 <TabsTrigger value="full-time" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 px-4 py-2">
-                  {isMobile ? 'Full Time' : 'Full Time Applications'}
+                  {isMobile ? t('statistics.companyTabs.fullTime.short') : t('statistics.companyTabs.fullTime.long')}
                 </TabsTrigger>
                 <TabsTrigger value="internship" className="data-[state=active]:bg-white data-[state=active]:text-blue-600 px-4 py-2">
-                  {isMobile ? 'Intern' : 'Intern Applications'}
+                  {isMobile ? t('statistics.companyTabs.intern.short') : t('statistics.companyTabs.intern.long')}
                 </TabsTrigger>
               </TabsList>
 
@@ -311,7 +311,7 @@ const topFullTimeCompanies = companyStats?.companyStats
                 {/* Top Full-Time Companies */}
                 <Card className="shadow-md border-blue-50 hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium text-gray-700">Top Companies - Full Time Applications</CardTitle>
+                    <CardTitle className="text-lg font-medium text-gray-700">{t('statistics.companyCards.topFullTime')}</CardTitle>
                   </CardHeader>
                   <CardContent className="px-0 sm:px-6">
                     {renderCompanyTable(topFullTimeCompanies, 'green')}
@@ -324,7 +324,7 @@ const topFullTimeCompanies = companyStats?.companyStats
                 {/* Top Internship Companies */}
                 <Card className="shadow-md border-blue-50 hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <CardTitle className="text-lg font-medium text-gray-700">Top Companies - Intern Applications</CardTitle>
+                    <CardTitle className="text-lg font-medium text-gray-700">{t('statistics.companyCards.topIntern')}</CardTitle>
                   </CardHeader>
                   <CardContent className="px-0 sm:px-6">
                     {renderCompanyTable(topInternshipCompanies, 'blue')}

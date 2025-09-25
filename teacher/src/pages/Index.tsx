@@ -7,41 +7,43 @@ import { Shield, Users, Building2, BarChart } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuthStore } from '@/store/authStore';
+import { useTranslation } from 'react-i18next';
 
 const Index: React.FC = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
   const { hasPermission } = useAuthStore();
+  const { t } = useTranslation();
   
   const allManagementCards = [
     {
-      title: "Users & Roles",
-      description: "Manage system users and permission roles",
+      title: t('dashboard.cards.users.title'),
+      description: t('dashboard.cards.users.description'),
       icon: <Shield className={`${isMobile ? "h-6 w-6" : "h-8 w-8"} text-blue-500`} />,
       path: "/permissions",
       color: "bg-blue-50",
       permission: "system:user:list"
     },
     {
-      title: "Student Management",
-      description: "Manage student profiles and academic records",
+      title: t('dashboard.cards.students.title'),
+      description: t('dashboard.cards.students.description'),
       icon: <Users className={`${isMobile ? "h-6 w-6" : "h-8 w-8"} text-green-500`} />,
       path: "/students",
       color: "bg-green-50",
       permission: "students.manage"
     },
     {
-      title: "Enterprise Management",
-      description: "Manage partner companies and opportunities",
+      title: t('dashboard.cards.enterprises.title'),
+      description: t('dashboard.cards.enterprises.description'),
       icon: <Building2 className={`${isMobile ? "h-6 w-6" : "h-8 w-8"} text-purple-500`} />,
       path: "/enterprises",
       color: "bg-purple-50",
       permission: "pelegant:company:query"
     },
     {
-      title: "Statistics",
-      description: "Review analytics and generate reports",
+      title: t('dashboard.cards.statistics.title'),
+      description: t('dashboard.cards.statistics.description'),
       icon: <BarChart className={`${isMobile ? "h-6 w-6" : "h-8 w-8"} text-amber-500`} />,
       path: "/statistics",
       color: "bg-amber-50",
@@ -62,8 +64,8 @@ const Index: React.FC = () => {
     <Layout>
       <div className="w-full space-y-6 animate-fade-in">
         <div className="px-2 sm:px-0">
-          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-1">Career Center Management System</h1>
-          <p className="text-gray-500 text-xs sm:text-sm">Welcome to the dashboard</p>
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-1">{t('dashboard.header.title')}</h1>
+          <p className="text-gray-500 text-xs sm:text-sm">{t('dashboard.header.subtitle')}</p>
         </div>
 
 
@@ -94,7 +96,7 @@ const Index: React.FC = () => {
                     handleCardClick(card.path);
                   }}
                 >
-                  Go to {card.title}
+                  {t('dashboard.actions.goTo', { title: card.title })}
                 </Button>
               </CardContent>
             </Card>

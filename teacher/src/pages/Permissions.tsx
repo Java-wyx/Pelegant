@@ -11,6 +11,7 @@ import { RoleForm } from '@/components/permissions/RoleForm';
 import { UserForm } from '@/components/permissions/UserForm';
 import { SearchResults } from '@/components/permissions/SearchResults';
 import { fetchRoles, createRole, updateRole, deleteRole, Role, fetchUsers, createUser, updateUser, deleteUser, assignUserRole } from '@/api/auth';
+import { useTranslation } from "react-i18next";
 
 interface User {
   id: string; // 修改为字符串类型，与后端一致
@@ -70,6 +71,7 @@ const Permissions: React.FC = () => {
   const [showUserForm, setShowUserForm] = useState(false);
   const [editingRole, setEditingRole] = useState<RoleFormData | null>(null);
   const [editingUser, setEditingUser] = useState<UserFormData | null>(null);
+  const { t } = useTranslation();
 
   // Load roles on mount
   useEffect(() => {
@@ -128,12 +130,12 @@ const Permissions: React.FC = () => {
     setShowUserForm(true);
   };
 
-  const handleDeleteRole = async (id: number) => {
+  const handleDeleteRole = async (id: string) => {
     try {
       await deleteRole(id);
       setRoles(current => current.filter(role => role.id !== id));
       setFilteredRoles(current => current.filter(role => role.id !== id));
-      toast.success("Role deleted successfully");
+      toast.success(t('permissions.toast.roleDeleted'));
     } catch (error) {
       toast.error(error.message);
       console.error(error);
@@ -170,7 +172,7 @@ const Permissions: React.FC = () => {
     try {
       await deleteUser(id);
       await reloadUsers();
-      toast.success("User deleted successfully");
+      toast.success(t('permissions.toast.userDeleted'));
     } catch (error) {
       toast.error(error.message);
       console.error(error);
@@ -195,14 +197,14 @@ const Permissions: React.FC = () => {
     try {
       if (editingRole) {
         await updateRole(role);
-        toast.success("Role updated successfully");
+        toast.success(t('permissions.toast.roleUpdated'));
       } else {
         await createRole({
           name: role.name,
           code: role.code,
           sort: 0
         });
-        toast.success("Role created successfully");
+        toast.success(t('permissions.toast.roleCreated'));
       }
       setShowRoleForm(false);
       await reloadRoles();
@@ -231,7 +233,7 @@ const Permissions: React.FC = () => {
           roleIds: user.roleIds
         };
 
-        toast.success("User updated successfully");
+        toast.success(t('permissions.toast.userUpdated'));
       } else {
         // Create new user
         const apiUser = await createUser({
@@ -247,7 +249,7 @@ const Permissions: React.FC = () => {
           roleIds: user.roleIds
         };
 
-        toast.success("User created successfully");
+        toast.success(t('permissions.toast.userCreated'));
       }
 
       setShowUserForm(false);
@@ -322,7 +324,7 @@ const Permissions: React.FC = () => {
       {/* Role Form Dialog */}
       <Dialog open={showRoleForm} onOpenChange={setShowRoleForm}>
         <DialogContent className="sm:max-w-2xl p-0">
-          <DialogTitle className="sr-only">{editingRole ? 'Edit Role' : 'Create Role'}</DialogTitle>
+          <DialogTitle className="sr-only">{editingRole ? t('permissions.dialog.editRole') : t('permissions.dialog.createRole')}</DialogTitle>
           <RoleForm 
             onClose={() => setShowRoleForm(false)}
             onSave={handleSaveRole}
@@ -334,7 +336,7 @@ const Permissions: React.FC = () => {
       {/* User Form Dialog */}
       <Dialog open={showUserForm} onOpenChange={setShowUserForm}>
         <DialogContent className="sm:max-w-md p-0">
-          <DialogTitle className="sr-only">{editingUser ? 'Edit User' : 'Create User'}</DialogTitle>
+          <DialogTitle className="sr-only">{editingUser ? t('permissions.dialog.editUser') : t('permissions.dialog.createUser')}</DialogTitle>
           <UserForm 
             onClose={() => setShowUserForm(false)}
             onSave={(user) => handleSaveUser({

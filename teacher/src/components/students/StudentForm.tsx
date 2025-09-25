@@ -1,5 +1,5 @@
 // StudentForm.tsx
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo} from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -21,20 +21,21 @@ import * as XLSX from 'xlsx';
 import { useToast } from "@/hooks/use-toast";
 import { MAJOR_OPTIONS } from "@/api/student";
 import { StudentFormFields } from './StudentFormFields';
+import { useTranslation } from 'react-i18next';
 
-// 定义表单验证 schema
-const formSchema = z.object({
+const baseStudentFormSchema = z.object({
   id: z.string().optional(),
-  name: z.string().min(1, { message: "Name is required" }),
-  studentId: z.string().min(1, { message: "Student ID is required" }),
-  email: z.string().email({ message: "Valid email is required" }).or(z.string().length(0)),
-  major: z.string().min(1, { message: "Major is required" }),
-  grade: z.string().min(1, { message: "Class year is required" }),
-  studentType: z.enum(['Bachelor', 'master', 'phd'], { message: "Student type must be Bachelor, master, or phd" }),
+  name: z.string().min(1),
+  studentId: z.string().min(1),
+  email: z.union([z.string().email(), z.literal('')]),
+  major: z.string().min(1),
+  grade: z.string().min(1),
+  studentType: z.enum(['Bachelor', 'master', 'phd']),
 });
 
 // 表单值类型
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof baseStudentFormSchema>;
+
 
 // 批量导入数据接口
 interface BulkImportData {
@@ -120,6 +121,25 @@ const StudentForm: React.FC<StudentFormProps> = ({
   const [allSheetData, setAllSheetData] = useState<WorksheetData[] | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const { t, i18n } = useTranslation();
+  // 定义表单验证 schema
+const formSchema = useMemo(() =>
+  baseStudentFormSchema.shape.id.optional().and(z.object({
+    name: z.string().min(1, { message: t('studentForm.validation.nameRequired') }),
+    studentId: z.string().min(1, { message: t('studentForm.validation.studentIdRequired') }),
+    email: z.union([
+      z.string().email({ message: t('studentForm.validation.emailInvalid') }),
+      z.literal('')
+    ]),
+    major: z.string().min(1, { message: t('studentForm.validation.majorRequired') }),
+    grade: z.string().min(1, { message: t('studentForm.validation.gradeRequired') }),
+    studentType: z.enum(['Bachelor','master','phd'] as const, {
+      errorMap: () => ({ message: t('studentForm.validation.studentTypeInvalid') })
+    })
+  }))
+,[t, i18n.language]);
+
+
 
   // 修复：确保表单正确初始化 studentType 值
   const form = useForm<FormValues>({
@@ -162,8 +182,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
     // 验证文件类型
     if (!file.name.endsWith('.xlsx') && !file.name.endsWith('.xls')) {
       toast({
-        title: "File type error",
-        description: "Please upload an Excel file (.xlsx or .xls format)",
+        title: t('studentForm.upload.fileTypeError'),
+        description: t('studentForm.upload.fileTypeHint'),
         variant: "destructive",
       });
       return;
@@ -172,8 +192,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
     // 验证文件大小 (最大5MB)
     if (file.size > 5 * 1024 * 1024) {
       toast({
-        title: "the file is too large",
-        description: "The file size cannot exceed 5MB",
+        title: t('studentForm.upload.fileTooLarge'),
+        description: t('studentForm.upload.fileSizeLimit'),
         variant: "destructive",
       });
       return;
@@ -196,8 +216,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
 
           if (jsonData.length === 0) {
             toast({
-              title: `worksheet ${sheetName} verification failed`,
-              description: `worksheet ${sheetName} Empty or no valid data`,
+              title: `t('studentForm.upload.sheetInvalid', { sheet: sheetName })`,
+              description: `t('studentForm.upload.sheetEmpty', { sheet: sheetName })`,
               variant: "destructive",
             });
             return;
@@ -227,8 +247,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
               studentType = 'Bachelor';
             } else {
               toast({
-                title: "Invalid student type",
-                description: `worksheet ${sheetName} It contains invalid student types: ${rawType}`,
+                title: t('studentForm.upload.studentTypeInvalid'),
+                description: `t('studentForm.upload.studentTypeError', { sheet: sheetName, type: rawType })`,
                 variant: "destructive",
               });
             }
@@ -253,8 +273,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
         setAllSheetData(allSheetData);
 
         toast({
-          title: "The documents are all ready",
-          description: `Loaded${flattenedData.length}student records（${allSheetData.length}worksheet），Click "Import Student" to complete the import`,
+          title: t('studentForm.upload.readyTitle'),
+          description: `t('studentForm.upload.readyDesc', { count: flattenedData.length, sheets: allSheetData.length })`,
         });
 
         // 重置文件输入
@@ -264,8 +284,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
       } catch (error) {
         console.error('Excel import error:', error);
         toast({
-          title: "Import failed",
-          description: "The processing program has an error and cannot be archived in Excel",
+          title: t('studentForm.upload.failedTitle'),
+          description: t('studentForm.upload.failedDesc'),
           variant: "destructive",
         });
         setFileData(null);
@@ -296,8 +316,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
       setUploadedFile(null);
     } else {
       toast({
-        title: "no data",
-        description: "Please upload a valid Excel file first.",
+        title: t('studentForm.upload.noDataTitle'),
+        description: t('studentForm.upload.noDataDesc'),
         variant: "destructive",
       });
     }
@@ -323,42 +343,42 @@ const StudentForm: React.FC<StudentFormProps> = ({
 
         <div className="grid gap-4 pt-2">
           <div className="flex justify-between py-2 border-b">
-            <span className="font-medium text-gray-500">Major</span>
+            <span className="font-medium text-gray-500">{t('studentForm.view.major')}</span>
             <span>{student?.major}</span>
           </div>
 
           <div className="flex justify-between py-2 border-b">
-            <span className="font-medium text-gray-500">Class Year</span>
+            <span className="font-medium text-gray-500">{t('studentForm.view.grade')}</span>
             <span>{student?.grade}</span>
           </div>
 
           {student?.email && (
             <div className="flex justify-between py-2 border-b">
-              <span className="font-medium text-gray-500">Email</span>
+              <span className="font-medium text-gray-500">{t('studentForm.view.email')}</span>
               <span>{student.email}</span>
             </div>
           )}
 
           <div className="flex justify-between py-2 border-b">
-            <span className="font-medium text-gray-500">Student Type</span>
+            <span className="font-medium text-gray-500">{t('studentForm.view.studentType')}</span>
             <span>{formatStudentType(student?.studentType)}</span>
           </div>
 
           <div className="flex justify-between py-2 border-b">
-            <span className="font-medium text-gray-500">Status</span>
+            <span className="font-medium text-gray-500">{t('studentForm.view.status')}</span>
             <span>{student?.status ? STATUS_MAPPING[student.status as StatusKey] : ''}</span>
           </div>
 
           {(student as any)?.gender && (
             <div className="flex justify-between py-2 border-b">
-              <span className="font-medium text-gray-500">Gender</span>
+              <span className="font-medium text-gray-500">{t('studentForm.view.gender')}</span>
               <span>{(student as any).gender}</span>
             </div>
           )}
 
           {(student as any)?.employmentStatus && (
             <div className="flex justify-between py-2 border-b">
-              <span className="font-medium text-gray-500">Employment Status</span>
+              <span className="font-medium text-gray-500">{t('studentForm.view.employmentStatus')}</span>
               <span>{(student as any).employmentStatus}</span>
             </div>
           )}
@@ -398,13 +418,13 @@ const StudentForm: React.FC<StudentFormProps> = ({
             </div>
             {!fileName ? (
               <>
-                <p className="font-medium text-career-blue mb-1 text-lg">Select Excel File</p>
-                <p className="text-sm text-gray-500">or drag and drop file here</p>
+                <p className="font-medium text-career-blue mb-1 text-lg">{t('studentForm.bulk.selectFile')}</p>
+                <p className="text-sm text-gray-500">{t('studentForm.bulk.dragDrop')}</p>
               </>
             ) : (
               <>
                 <p className="font-medium text-green-600 mb-1 flex items-center gap-2 text-lg">
-                  <CheckCircle className="h-5 w-5" /> File Selected
+                  <CheckCircle className="h-5 w-5" /> {t('studentForm.bulk.fileSelected')}
                 </p>
                 <p className="text-sm text-gray-600 max-w-xs truncate">{fileName}</p>
               </>
@@ -420,11 +440,11 @@ const StudentForm: React.FC<StudentFormProps> = ({
         />
         <div className="w-full">
           <div className="bg-gray-50/80 p-4 rounded-lg border border-gray-100/80">
-            <h4 className="text-md font-medium text-gray-700 mb-2">Requirements:</h4>
+            <h4 className="text-md font-medium text-gray-700 mb-2">{t('studentForm.bulk.requirementsTitle')}</h4>
             <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-              <li>Excel file (.xlsx, .xls) format</li>
-              <li>Required columns: <span className="font-medium text-career-blue">name</span>, <span className="font-medium text-career-blue">studentId</span>, <span className="font-medium text-career-blue">email</span>, <span className="font-medium text-career-blue">major</span>, <span className="font-medium text-career-blue">grade</span>, <span className="font-medium text-career-blue">studentType</span> (Bachelor/master/phd)</li>
-              <li>First row should contain column headers</li>
+              <li>{t('studentForm.bulk.requirements.format')}</li>
+              <li>{t('studentForm.bulk.requirements.columns')}</li>
+              <li>{t('studentForm.bulk.requirements.header')}</li>
             </ul>
           </div>
         </div>
@@ -436,7 +456,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
   </div>
   <div className="flex justify-end gap-3">
     <Button type="button" variant="outline" onClick={onCancel}>
-      Cancel
+      {t('common.cancel')}
     </Button>
     <Button
       type="button"
@@ -444,7 +464,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
       disabled={!fileData}
       className={`${fileData ? 'bg-green-600 hover:bg-green-700' : ''}`}
     >
-      Import Students
+      {t('studentForm.bulk.import')}
     </Button>
   </div>
 </div>
@@ -459,8 +479,8 @@ const StudentForm: React.FC<StudentFormProps> = ({
       ) : mode === 'add' ? (
         <Tabs defaultValue="single" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-6">
-            <TabsTrigger value="single">Add Single Student</TabsTrigger>
-            <TabsTrigger value="bulk">Bulk Import</TabsTrigger>
+            <TabsTrigger value="single">{t('studentForm.tabs.single')}</TabsTrigger>
+            <TabsTrigger value="bulk">{t('studentForm.tabs.bulk')}</TabsTrigger>
           </TabsList>
           
           <TabsContent value="single" className="pt-4">
@@ -469,10 +489,10 @@ const StudentForm: React.FC<StudentFormProps> = ({
                 <StudentFormFields control={form.control} includeId={false} />
                 <div className="flex justify-end gap-3">
                   <Button type="button" variant="outline" onClick={onCancel}>
-                    Cancel
+                    {t('common.cancel')}
                   </Button>
                   <Button type="submit">
-                    Add Student
+                    {t('studentForm.actions.add')}
                   </Button>
                 </div>
               </form>
@@ -500,10 +520,10 @@ const StudentForm: React.FC<StudentFormProps> = ({
             </div>
             <div className="flex justify-end gap-3 pt-2">
               <Button type="button" variant="outline" onClick={onCancel}>
-                Cancel
+                {t('common.cancel')}
               </Button>
               <Button type="submit">
-                Save Changes
+                {t('studentForm.actions.save')}
               </Button>
             </div>
           </form>

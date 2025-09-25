@@ -48,6 +48,7 @@ import studentApi, {
   StudentFormData,
   PageParams,
 } from "@/api/student";
+import { useTranslation } from "react-i18next";
 
 const Students: React.FC = () => {
   const { toast } = useToast();
@@ -69,16 +70,17 @@ const Students: React.FC = () => {
   // Students data from API
   const [studentsData, setStudentsData] = useState<Student[]>([]);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   // Majors for filtering
   const majors = [
-    "Computer Science",
-    "Software Engineering",
-    "Electronic Engineering",
-    "Artificial Intelligence",
-    "Data Science",
-    "软件" 
+    { value: "computerScience" },
+    { value: "softwareEngineering" },
+    { value: "electronicEngineering" },
+    { value: "artificialIntelligence" },
+    { value: "dataScience" }
   ];
+
 
   const fetchStudents = async () => {
     setLoading(true);
@@ -347,7 +349,7 @@ const handleExcelImport = async (file: File) => {
             <div className="relative flex-1">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
               <Input
-                placeholder="Search by name, ID or email"
+                placeholder={t('students.search.placeholder')}
                 className="pl-8 bg-white shadow-sm border-gray-200"
                 value={searchQuery}
                 onChange={handleSearchChange}
@@ -356,14 +358,14 @@ const handleExcelImport = async (file: File) => {
 
             <Select value={majorFilter} onValueChange={handleMajorFilterChange}>
               <SelectTrigger className="w-full sm:w-[180px] bg-white shadow-sm border-gray-200">
-                <SelectValue placeholder="Major Filter" />
+                <SelectValue placeholder={t('students.filter.major')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Majors</SelectItem>
-                {majors.map((major) => (
-                  <SelectItem key={major} value={major}>
-                    {major}
-                  </SelectItem>
+                <SelectItem value="all">{t('students.filter.all')}</SelectItem>
+                  {majors.map((major) => (
+                <SelectItem key={major.value} value={major.value}>
+                  {t(`students.majors.${major.value}`)}
+                </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -374,7 +376,7 @@ const handleExcelImport = async (file: File) => {
             onClick={() => setAddDialogOpen(true)}
           >
             <PlusCircle className="mr-2 h-4 w-4" />
-            Add Student
+            {t('students.action.add')}
           </Button>
         </div>
 
@@ -385,22 +387,22 @@ const handleExcelImport = async (file: File) => {
                 <TableHeader className="bg-gray-50">
                   <TableRow>
                     <TableHead className="text-gray-700 font-medium">
-                      Student ID
+                      {t('students.table.studentId')}
                     </TableHead>
                     <TableHead className="text-gray-700 font-medium">
-                      Name
+                      {t('students.table.name')}
                     </TableHead>
                     <TableHead className="text-gray-700 font-medium">
-                      Email
+                      {t('students.table.email')}
                     </TableHead>
                     <TableHead className="text-gray-700 font-medium">
-                      Major
+                      {t('students.table.major')}
                     </TableHead>
                     <TableHead className="text-gray-700 font-medium">
-                      Class
+                      {t('students.table.class')}
                     </TableHead>
                     <TableHead className="text-gray-700 font-medium">
-                      Actions
+                      {t('students.table.actions')}
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -411,7 +413,7 @@ const handleExcelImport = async (file: File) => {
                         colSpan={6}
                         className="text-center py-8 text-gray-500"
                       >
-                        Loading student data...
+                        {t('students.table.loading')}
                       </TableCell>
                     </TableRow>
                   ) : studentsData.length > 0 ? (
@@ -446,7 +448,7 @@ const handleExcelImport = async (file: File) => {
                               variant="outline"
                               size="icon"
                               className="hover:text-amber-600 hover:border-amber-600"
-                              title="Edit student information"
+                              title={t('students.action.edit')}
                               onClick={() => {
                                 setSelectedStudent(student);
                                 setEditSheetOpen(true);
@@ -458,7 +460,7 @@ const handleExcelImport = async (file: File) => {
                               variant="outline"
                               size="icon"
                               className="text-red-500 hover:text-red-600 hover:border-red-600"
-                              title="Delete students"
+                              title={t('students.action.delete')}
                               onClick={() => {
                                 setSelectedStudent(student);
                                 setDeleteDialogOpen(true);
@@ -477,8 +479,8 @@ const handleExcelImport = async (file: File) => {
                         className="text-center py-8 text-gray-500"
                       >
                         {majorFilter === "all"
-                          ? "No student records found"
-                          : `No students found for ${majorFilter}`}
+                          ? t('students.table.emptyAll')
+                          : `{t('students.table.emptyFilter', { major: majorFilter })}`}
                       </TableCell>
                     </TableRow>
                   )}
@@ -542,7 +544,7 @@ const handleExcelImport = async (file: File) => {
       <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Add Students</DialogTitle>
+            <DialogTitle>{t('students.dialog.addTitle')}</DialogTitle>
           </DialogHeader>
           <StudentForm
             mode="add"
@@ -558,25 +560,23 @@ const handleExcelImport = async (file: File) => {
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent className="sm:max-w-[400px]">
           <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
+            <DialogTitle>{t('students.dialog.deleteTitle')}</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <p className="text-gray-500">
-              Are you sure you want to delete the record for{" "}
-              <span className="font-semibold">
-                {selectedStudent?.name || selectedStudent?.fullName}
-              </span>
-              ? This action cannot be undone.
+              {t('students.dialog.deleteConfirm', {
+                name: selectedStudent?.name || selectedStudent?.fullName
+              })}
             </p>
             <div className="flex justify-end gap-3">
               <Button
                 variant="outline"
                 onClick={() => setDeleteDialogOpen(false)}
               >
-                Cancel
+                {t('common.cancel')}
               </Button>
               <Button variant="destructive" onClick={handleDeleteStudent}>
-                Delete
+                {t('common.delete')}
               </Button>
             </div>
           </div>
@@ -587,7 +587,7 @@ const handleExcelImport = async (file: File) => {
       <Sheet open={viewSheetOpen} onOpenChange={setViewSheetOpen}>
         <SheetContent className="sm:max-w-[500px] overflow-y-auto">
           <SheetHeader>
-            <SheetTitle>Student Details</SheetTitle>
+            <SheetTitle>{t('students.sheet.details')}</SheetTitle>
           </SheetHeader>
           {selectedStudent && (
             <StudentForm
@@ -631,7 +631,7 @@ const handleExcelImport = async (file: File) => {
       <Sheet open={editSheetOpen} onOpenChange={setEditSheetOpen}>
         <SheetContent className="sm:max-w-[500px] overflow-y-auto">
           <SheetHeader>
-            <SheetTitle>Edit Student</SheetTitle>
+            <SheetTitle>{t('students.sheet.edit')}</SheetTitle>
           </SheetHeader>
           {selectedStudent && (
             <StudentForm

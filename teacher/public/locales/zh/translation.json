@@ -1,0 +1,534 @@
+{
+  "login": {
+    "header": {
+      "title": "就业中心管理(教师端)",
+      "subtitle": "登录以访问系统"
+    },
+    "form": {
+      "email": {
+        "label": "邮箱",
+        "placeholder": "teacher@example.com"
+      },
+      "password": {
+        "label": "密码",
+        "placeholder": "••••••••"
+      }
+    },
+    "actions": {
+      "login": "登录",
+      "loggingIn": "登录中..."
+    },
+    "status": {
+      "successRedirect": "登录成功！正在跳转..."
+    },
+    "toast": {
+      "success": {
+        "title": "登录成功",
+        "desc": "欢迎回来"
+      },
+      "error": {
+        "title": "登录失败",
+        "desc": "请检查您的账号与密码"
+      }
+    },
+    "error": {
+      "badCredentials": "邮箱或密码不正确"
+    },
+    "footer": {
+      "product": "就业中心管理系统"
+    }
+  },
+  "dashboard": {
+    "header": {
+      "title": "就业中心管理系统",
+      "subtitle": "快速总览与管理入口"
+    },
+    "cards": {
+      "users": {
+        "title": "用户与角色",
+        "description": "集中管理系统用户与权限分配"
+      },
+      "students": {
+        "title": "学生管理",
+        "description": "管理学生档案和学业记录"
+      },
+      "enterprises": {
+        "title": "企业管理",
+        "description": "管理合作企业和就业机会"
+      },
+      "statistics": {
+        "title": "数据统计",
+        "description": "查看分析结果并生成报表"
+      },
+      "majorDistribution": "专业分布",
+      "industrySectors": "行业领域",
+      "monthlyEmployment": "月度就业"
+    },
+    "actions": {
+      "goTo": "进入{{title}}"
+    },
+    "hero": {
+      "title": "职业中心管理系统",
+      "subtitle": "欢迎回来，这里是您的系统概览"
+    },
+    "stats": {
+      "totalStudents": "学生总数",
+      "enterprisePartners": "合作企业",
+      "employmentRate": "就业率",
+      "internshipPositions": "实习岗位",
+      "vs": {
+        "lastMonth": "较上月",
+        "lastQuarter": "较上季度",
+        "lastYear": "较去年"
+      }
+    },
+    "majors": {
+      "cs": "计算机科学",
+      "ee": "电气工程",
+      "finance": "金融",
+      "marketing": "市场营销"
+    },
+    "sectors": {
+      "it": "互联网/IT",
+      "finance": "金融/银行",
+      "education": "教育/培训",
+      "healthcare": "医疗健康"
+    },
+    "periods": {
+      "janFeb": "1-2月",
+      "marApr": "3-4月",
+      "mayJun": "5-6月",
+      "julAug": "7-8月"
+    }
+  },
+  "enterprise": {
+    "searchPlaceholder": "搜索企业",
+    "filterPlaceholder": "行业筛选",
+    "allIndustries": "所有行业",
+    "table": {
+      "companyName": "企业名称",
+      "industry": "行业",
+      "openPositions": "开放职位数"
+    },
+    "noRecords": "未找到匹配的企业记录",
+    "tryAdjust": "请尝试调整搜索条件或筛选"
+  },
+  "statistics": {
+    "common": {
+      "error": "错误"
+    },
+    "loading": "统计数据加载中…",
+    "error": {
+      "title": "统计数据加载失败",
+      "fetch": "获取统计数据失败"
+    },
+    "actions": {
+      "retry": "重试"
+    },
+    "empty": {
+      "title": "暂无统计数据",
+      "desc": "当前没有可展示的统计数据。"
+    },
+    "tabs": {
+      "students": {
+        "short": "学生",
+        "long": "学生投递统计"
+      },
+      "enterprises": {
+        "short": "企业",
+        "long": "企业投递统计"
+      }
+    },
+    "studentTabs": {
+      "byGrade": "按年级",
+      "byMajor": "按专业"
+    },
+    "studentCards": {
+      "gradeDistribution": "年级分布",
+      "majorDistribution": "专业分布"
+    },
+    "companyTabs": {
+      "fullTime": {
+        "short": "全职",
+        "long": "全职投递"
+      },
+      "intern": {
+        "short": "实习",
+        "long": "实习投递"
+      }
+    },
+    "companyCards": {
+      "topFullTime": "全职投递 Top 企业",
+      "topIntern": "实习投递 Top 企业"
+    },
+    "table": {
+      "rank": "排名",
+      "company": "企业",
+      "applications": "投递数",
+      "grade": "年级",
+      "major": "专业",
+      "intern": "实习",
+      "fullTime": "全职",
+      "total": "合计"
+    }
+  },
+  "layout": {
+    "title": "就业中心管理系统",
+    "menu": {
+      "home": "首页",
+      "usersRoles": "用户与角色",
+      "students": "学生管理",
+      "enterprises": "企业管理",
+      "statistics": "数据统计",
+      "settings": "系统设置"
+    },
+    "profile": {
+      "goToSettings": "前往个人设置"
+    },
+    "user": {
+      "defaultName": "用户",
+      "noEmail": "暂无邮箱"
+    }
+  },
+  "notFound": {
+    "message": "抱歉！页面未找到",
+    "returnHome": "返回首页"
+  },
+  "permissions": {
+    "toast": {
+      "roleDeleted": "角色删除成功",
+      "userDeleted": "用户删除成功",
+      "roleUpdated": "角色更新成功",
+      "roleCreated": "角色创建成功",
+      "userUpdated": "用户更新成功",
+      "userCreated": "用户创建成功"
+    },
+    "dialog": {
+      "editRole": "编辑角色",
+      "createRole": "创建角色",
+      "editUser": "编辑用户",
+      "createUser": "创建用户"
+    }
+  },
+  "settings": {
+    "tabs": {
+      "profile": "个人资料",
+      "security": "安全设置"
+    },
+    "toast": {
+      "loadProfileError": "加载资料失败",
+      "profileUpdated": "资料更新成功",
+      "updateProfileError": "更新资料失败",
+      "logoutSuccess": "退出登录成功",
+      "logoutError": "退出登录失败",
+      "invalidImageType": "请选择图片文件",
+      "imageTooLarge": "图片大小应小于5MB",
+      "noImage": "未选择图片",
+      "avatarUpdated": "头像更新成功",
+      "avatarUploadFailed": "头像上传失败",
+      "fillAllPasswordFields": "请填写所有密码字段",
+      "passwordMismatch": "新密码不一致",
+      "passwordUpdated": "密码更新成功",
+      "passwordUpdateFailed": "密码更新失败"
+    },
+    "avatar": {
+      "uploadTitle": "上传头像",
+      "selectImage": "选择图片",
+      "uploading": "正在上传..."
+    },
+    "form": {
+      "nickname": "昵称",
+      "email": "邮箱",
+      "emailUnchangeable": "邮箱不能通过资料设置修改",
+      "roles": "角色",
+      "noRoles": "未分配角色",
+      "currentPassword": "当前密码",
+      "newPassword": "新密码",
+      "confirmPassword": "确认新密码",
+      "passwordHint": "密码至少 8 位，包含字母、数字和符号"
+    },
+    "action": {
+      "updateProfile": "更新资料",
+      "updatePassword": "更新密码",
+      "logout": "退出登录"
+    }
+  },
+  "common": {
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "language": "偏好语言"
+  },
+  "students": {
+    "search": {
+      "placeholder": "按姓名、学号或邮箱搜索"
+    },
+    "filter": {
+      "major": "按专业筛选",
+      "all": "全部专业"
+    },
+    "action": {
+      "add": "新增学生",
+      "edit": "编辑学生",
+      "delete": "删除学生"
+    },
+    "table": {
+      "studentId": "学号",
+      "name": "姓名",
+      "email": "邮箱",
+      "major": "专业",
+      "class": "班级",
+      "actions": "操作",
+      "loading": "正在加载学生数据...",
+      "emptyAll": "暂无学生记录",
+      "emptyFilter": "未找到属于 {{major}} 的学生"
+    },
+    "dialog": {
+      "addTitle": "新增学生",
+      "deleteTitle": "确认删除",
+      "deleteConfirm": "确定要删除 {{name}} 的记录吗？该操作不可撤销。"
+    },
+    "sheet": {
+      "details": "学生详情",
+      "edit": "编辑学生"
+    },
+    "majors": {
+      "computerScience": "计算机科学",
+      "softwareEngineering": "软件工程",
+      "electronicEngineering": "电子工程",
+      "artificialIntelligence": "人工智能",
+      "dataScience": "数据科学"
+    }
+  },
+  "route": {
+    "noPermission": "您没有访问该页面的权限"
+  },
+  "studentForm": {
+    "validation": {
+      "nameRequired": "姓名不能为空",
+      "studentIdRequired": "学号不能为空",
+      "emailInvalid": "请输入有效的邮箱地址",
+      "majorRequired": "专业不能为空",
+      "gradeRequired": "班级不能为空",
+      "studentTypeInvalid": "学生类型必须是本科、硕士或博士"
+    },
+    "upload": {
+      "fileTypeError": "文件类型错误",
+      "fileTypeHint": "请上传 Excel 文件（.xlsx 或 .xls 格式）",
+      "fileTooLarge": "文件过大",
+      "fileSizeLimit": "文件大小不能超过 5MB",
+      "sheetInvalid": "工作表 {{sheet}} 验证失败",
+      "sheetEmpty": "工作表 {{sheet}} 为空或没有有效数据",
+      "studentTypeInvalid": "无效的学生类型",
+      "studentTypeError": "工作表 {{sheet}} 包含无效的学生类型: {{type}}",
+      "readyTitle": "数据已准备就绪",
+      "readyDesc": "已加载 {{count}} 条学生记录（{{sheets}} 个工作表），点击“导入学生”以完成导入。",
+      "failedTitle": "导入失败",
+      "failedDesc": "处理过程中发生错误，无法导入 Excel 数据。",
+      "noDataTitle": "暂无数据",
+      "noDataDesc": "请先上传有效的 Excel 文件。"
+    },
+    "view": {
+      "major": "专业",
+      "grade": "班级",
+      "email": "邮箱",
+      "studentType": "学生类型",
+      "status": "状态",
+      "gender": "性别",
+      "employmentStatus": "就业状态"
+    },
+    "bulk": {
+      "selectFile": "选择 Excel 文件",
+      "dragDrop": "或将文件拖放到此处",
+      "fileSelected": "已选择文件",
+      "requirementsTitle": "文件要求：",
+      "requirements": {
+        "format": "文件格式为 Excel（.xlsx, .xls）",
+        "columns": "必填列：姓名、学号、邮箱、专业、班级、学生类型(本科/硕士/博士)",
+        "header": "第一行必须包含列标题"
+      },
+      "import": "导入学生"
+    },
+    "tabs": {
+      "single": "单个添加学生",
+      "bulk": "批量导入"
+    },
+    "actions": {
+      "add": "添加学生",
+      "save": "保存更改"
+    },
+    "fields": {
+      "id": "编号",
+      "name": "姓名",
+      "namePlaceholder": "请输入学生姓名",
+      "studentId": "学号",
+      "studentIdPlaceholder": "请输入学生学号",
+      "email": "邮箱",
+      "emailPlaceholder": "请输入学生邮箱",
+      "major": "专业",
+      "majorPlaceholder": "请选择专业",
+      "grade": "班级",
+      "gradePlaceholder": "请选择班级",
+      "studentType": "学生类型",
+      "studentTypePlaceholder": "请选择学生类型"
+    },
+    "studentType": {
+      "bachelor": "本科",
+      "master": "硕士",
+      "phd": "博士"
+    }
+  },
+  "roles": {
+    "form": {
+      "validation": {
+        "nameRequired": "角色名称不能为空"
+      },
+      "error": {
+        "saveFailed": "保存角色失败"
+      },
+      "title": {
+        "edit": "编辑角色",
+        "add": "新增角色"
+      },
+      "success": {
+        "updated": "角色已成功更新！",
+        "created": "角色已成功创建！"
+      },
+      "fields": {
+        "code": "角色编号",
+        "codePlaceholder": "请输入角色编号",
+        "name": "角色名称",
+        "namePlaceholder": "请输入角色名称",
+        "description": "角色描述",
+        "descriptionPlaceholder": "请输入角色描述",
+        "permissions": "权限"
+      },
+      "actions": {
+        "cancel": "取消",
+        "update": "更新角色",
+        "create": "创建角色"
+      }
+    },
+    "list": {
+      "empty": "暂无角色",
+      "columns": {
+        "name": "角色名称",
+        "description": "角色描述",
+        "permissions": "权限",
+        "actions": "操作"
+      }
+    },
+    "permissions": {
+      "user_view": "查看用户",
+      "user_add": "新增用户",
+      "user_edit": "编辑用户",
+      "user_delete": "删除用户",
+      "role_view": "查看角色",
+      "role_add": "新增角色",
+      "role_edit": "编辑角色",
+      "role_delete": "删除角色",
+      "student_view": "查看学生",
+      "student_edit": "编辑学生",
+      "enterprise_view": "查看企业",
+      "enterprise_edit": "编辑企业",
+      "statistics_view": "查看统计",
+      "statistics_export": "导出统计",
+      "reports_generate": "生成报表",
+      "data_analyze": "数据分析",
+      "dashboard_view": "查看仪表盘",
+      "info_view": "查看信息",
+      "pelegant_company_query": "企业查询",
+      "basic_view": "普通用户"
+    },
+    "codes": {
+      "admin": "管理员",
+      "teacher": "教师",
+      "project": "项目管理员",
+      "student": "学生"
+    }
+  },
+  "search": {
+    "tabs": {
+      "roles": "角色管理",
+      "users": "用户管理"
+    },
+    "placeholder": {
+      "roles": "搜索角色…",
+      "users": "搜索用户…"
+    },
+    "addRole": "新增角色",
+    "addUser": "新增用户",
+    "addPrefix": "新增",
+    "types": {
+      "role": "角色",
+      "user": "用户",
+      "roles": "角色",
+      "users": "用户"
+    },
+    "noResults": "未找到与“{{query}}”匹配的{{type}}",
+    "columns": {
+      "roleName": "角色名称",
+      "description": "描述",
+      "permissions": "权限",
+      "actions": "操作",
+      "username": "用户名",
+      "email": "邮箱",
+      "role": "角色"
+    },
+    "actions": {
+      "edit": "编辑",
+      "delete": "删除",
+      "clear": "清除"
+    }
+  },
+  "users": {
+    "form": {
+      "title": {
+        "edit": "编辑用户",
+        "add": "新增用户"
+      },
+      "fields": {
+        "username": "用户名",
+        "usernamePlaceholder": "请输入用户名",
+        "email": "邮箱",
+        "emailPlaceholder": "请输入用户邮箱",
+        "role": "角色",
+        "rolePlaceholder": "请选择角色"
+      },
+      "validation": {
+        "usernameRequired": "用户名不能为空",
+        "emailRequired": "邮箱不能为空",
+        "emailInvalid": "邮箱格式不正确",
+        "roleRequired": "角色不能为空"
+      },
+      "success": {
+        "updated": "用户更新成功！",
+        "created": "用户创建成功！"
+      },
+      "error": {
+        "operationFailed": "操作失败"
+      },
+      "actions": {
+        "cancel": "取消",
+        "update": "更新用户",
+        "create": "创建用户"
+      }
+    },
+    "list": {
+      "empty": "未找到用户",
+      "columns": {
+        "username": "用户名",
+        "email": "邮箱",
+        "role": "角色",
+        "actions": "操作"
+      },
+      "actions": {
+        "edit": "编辑",
+        "delete": "删除"
+      },
+      "toast": {
+        "loadFailed": "加载用户失败"
+      }
+    }
+  }
+}

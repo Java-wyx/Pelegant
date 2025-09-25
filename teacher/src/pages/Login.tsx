@@ -9,6 +9,7 @@ import { LogIn, Shield } from 'lucide-react';
 import { toast } from 'sonner';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useAuthStore } from '@/store/authStore';
+import { useTranslation } from 'react-i18next';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -18,6 +19,7 @@ const Login: React.FC = () => {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
   const { isAuthenticated, login, fetchPermissions } = useAuthStore();
+  const { t } = useTranslation();
   
   // If already authenticated, redirect to home
   useEffect(() => {
@@ -41,18 +43,18 @@ const Login: React.FC = () => {
       throw new Error('No token received');
     })
     .then(() => {
-      setSuccess('Login successful! Redirecting...');
-      toast.success('Login successful', {
+      setSuccess(t('login.status.successRedirect'));
+      toast.success(t('login.toast.success.title'), {
         duration: 3000,
-        description: 'Welcome back'
+        description: t('login.toast.success.desc')
       });
       navigate('/');
     })
     .catch(error => {
-      setError('Incorrect email or password');
-      toast.error('Login failed', {
+      setError(t('login.error.badCredentials'));
+      toast.error(t('login.toast.error.title'), {
         duration: 4000,
-        description: 'Please check your credentials'
+        description: t('login.toast.error.desc')
       });
     })
     .finally(() => {
@@ -72,9 +74,9 @@ const Login: React.FC = () => {
             </div>
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-400 bg-clip-text text-transparent">
-            Career Center Management
+            {t('login.header.title')}
           </h1>
-          <p className="text-gray-500 mt-2">Login to access the system</p>
+          <p className="text-gray-500 mt-2">{t('login.header.subtitle')}</p>
         </div>
         
         <Card className="border border-gray-100 shadow-md">
@@ -94,11 +96,11 @@ const Login: React.FC = () => {
           <form onSubmit={handleLogin}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('login.form.email.label')}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="teacher@example.com"
+                  placeholder={t('login.form.email.placeholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -106,11 +108,11 @@ const Login: React.FC = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('login.form.password.label')}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={t('login.form.password.placeholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -130,11 +132,11 @@ const Login: React.FC = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Logging in...
+                    {t('login.actions.loggingIn')}
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    <LogIn className="h-4 w-4" /> Login
+                    <LogIn className="h-4 w-4" /> {t('login.actions.login')}
                   </span>
                 )}
               </Button>
@@ -143,7 +145,7 @@ const Login: React.FC = () => {
         </Card>
         
         <div className="mt-6 text-center text-sm text-gray-500">
-          <div>© {new Date().getFullYear()} Career Center Management System</div>
+          <div>© {new Date().getFullYear()} {t('login.footer.product')}</div>
         </div>
       </div>
     </div>

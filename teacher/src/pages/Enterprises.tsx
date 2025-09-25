@@ -17,6 +17,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useTranslation } from 'react-i18next';
+
 
 const Enterprises: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,6 +28,7 @@ const Enterprises: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [allIndustries, setAllIndustries] = useState<string[]>([]); // Store all industries here
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   // Fetch companies with search and filter parameters
   const fetchCompanies = async () => {
@@ -93,7 +96,7 @@ const Enterprises: React.FC = () => {
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
                   <Input
-                    placeholder="Search companies"
+                    placeholder={t('enterprise.searchPlaceholder')}
                     className="pl-8"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -101,10 +104,10 @@ const Enterprises: React.FC = () => {
                 </div>
                 <Select value={industryFilter} onValueChange={setIndustryFilter}>
                   <SelectTrigger className="w-full sm:w-[180px]">
-                    <SelectValue placeholder="Industry Filter" />
+                    <SelectValue placeholder={t('enterprise.filterPlaceholder')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Industries</SelectItem>
+                    <SelectItem value="all">{t('enterprise.allIndustries')}</SelectItem>
                     {allIndustries.map(industry => (
                       <SelectItem key={industry} value={industry}>{industry}</SelectItem>
                     ))}
@@ -117,9 +120,9 @@ const Enterprises: React.FC = () => {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-gray-50 hover:bg-gray-50">
-                    <TableHead className="font-semibold">Company Name</TableHead>
-                    <TableHead className="font-semibold">Industry</TableHead>
-                    <TableHead className="font-semibold">Open Positions</TableHead>
+                    <TableHead className="font-semibold">{t('enterprise.table.companyName')}</TableHead>
+                    <TableHead className="font-semibold">{t('enterprise.table.industry')}</TableHead>
+                    <TableHead className="font-semibold">{t('enterprise.table.openPositions')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -160,8 +163,8 @@ const Enterprises: React.FC = () => {
                       <TableCell colSpan={3} className="text-center py-12 text-gray-500">
                         <div className="flex flex-col items-center">
                           <Search className="h-10 w-10 text-gray-300 mb-2" />
-                          <p>No matching enterprise records found</p>
-                          <p className="text-sm mt-1">Try adjusting your search or filter</p>
+                          <p>{t('enterprise.noRecords')}</p>
+                          <p className="text-sm mt-1">{t('enterprise.tryAdjust')}</p>
                         </div>
                       </TableCell>
                     </TableRow>

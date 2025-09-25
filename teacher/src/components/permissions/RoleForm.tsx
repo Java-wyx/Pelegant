@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { toast } from 'sonner';
 import { X, Check } from 'lucide-react';
 import { Role, Permission, createRole, updateRole, assignRoleMenu, RoleFormData } from '@/api/auth';
+import { useTranslation } from 'react-i18next';
 
 interface RoleFormProps {
   onClose: () => void;
@@ -31,6 +32,9 @@ const availablePermissions: Permission[] = [
 ];
 
 export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole }) => {
+
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: editRole?.name || '',
     code: editRole?.code || '',
@@ -69,7 +73,7 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
   const validateForm = () => {
     const newErrors: {name?: string} = {};
     if (!formData.name.trim()) {
-      newErrors.name = 'Role name is required';
+      newErrors.name = t('roles.form.validation.nameRequired');
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -112,7 +116,7 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
         onClose();
       }, 1500);
     } catch (error) {
-      toast.error('Failed to save role');
+      toast.error(t('roles.form.error.saveFailed'));
       console.error(error);
     }
   };
@@ -125,7 +129,7 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="bg-gray-50">
         <CardTitle className="text-lg font-medium">
-          {editRole ? 'Edit Role' : 'Add New Role'}
+          {editRole ? t('roles.form.title.edit') : t('roles.form.title.add')}
         </CardTitle>
       </CardHeader>
       
@@ -135,20 +139,20 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
             <Alert variant="success" className="mb-4">
               <Check className="h-4 w-4" />
               <AlertDescription>
-                Role successfully {editRole ? 'updated' : 'created'}!
+                {editRole ? t('roles.form.success.updated') : t('roles.form.success.created')}!
               </AlertDescription>
             </Alert>
           )}
           
           <div className="space-y-1">
-            <Label htmlFor="code">Role Code</Label>
+            <Label htmlFor="code">{t('roles.form.fields.code')}</Label>
             <Input
               id="code"
               name="code"
               value={formData.code}
               onChange={handleChange}
               className={errors.name ? 'border-red-500' : ''}
-              placeholder="Enter role code"
+              placeholder={t('roles.form.fields.codePlaceholder')}
             />
             {errors.name && (
               <p className="text-xs text-red-500 mt-1">{errors.name}</p>
@@ -156,14 +160,14 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
           </div>
           
           <div className="space-y-1">
-            <Label htmlFor="name">Role Name</Label>
+            <Label htmlFor="name">{t('roles.form.fields.name')}</Label>
             <Input
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
               className={errors.name ? 'border-red-500' : ''}
-              placeholder="Enter role name"
+              placeholder={t('roles.form.fields.namePlaceholder')}
             />
             {errors.name && (
               <p className="text-xs text-red-500 mt-1">{errors.name}</p>
@@ -171,18 +175,18 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
           </div>
           
           <div className="space-y-1">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('roles.form.fields.description')}</Label>
             <Input
               id="description"
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter role description"
+              placeholder={t('roles.form.fields.descriptionPlaceholder')}
             />
           </div>
           
           <div className="space-y-3">
-            <Label>Permissions</Label>
+            <Label>{t('roles.form.fields.permissions')}</Label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {availablePermissions.map((permission) => (
                 <div key={permission.id} className="flex items-start space-x-2 p-2 rounded hover:bg-gray-50">
@@ -195,9 +199,9 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
                   />
                   <div className="grid gap-1.5 leading-none">
                     <Label htmlFor={permission.id.toString()} className="text-sm font-medium cursor-pointer">
-                      {permission.name}
+                      {t(`roles.permissions.${permission.code}`, { defaultValue: permission.name })}
                     </Label>
-                    <p className="text-xs text-gray-500">{permission.code}</p>
+                    <p className="text-xs text-gray-500"></p>
                   </div>
                 </div>
               ))}
@@ -211,10 +215,10 @@ export const RoleForm: React.FC<RoleFormProps> = ({ onClose, onSave, editRole })
             variant="outline" 
             onClick={onClose}
           >
-            Cancel
+            {t('roles.form.actions.cancel')}
           </Button>
           <Button type="submit">
-            {editRole ? 'Update Role' : 'Create Role'}
+            {editRole ? t('roles.form.actions.update') : t('roles.form.actions.create')}
           </Button>
         </CardFooter>
       </form>

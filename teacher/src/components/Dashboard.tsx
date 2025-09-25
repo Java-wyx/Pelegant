@@ -3,20 +3,23 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, LineChart, PieChart } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
+
   const stats = [
-    { title: "Total Students", value: "2,546", change: "+12%", description: "vs. last month" },
-    { title: "Enterprise Partners", value: "187", change: "+5%", description: "vs. last quarter" },
-    { title: "Employment Rate", value: "92.3%", change: "+2.1%", description: "vs. last year" },
-    { title: "Internship Positions", value: "421", change: "+17%", description: "vs. last month" },
-  ];
+    { title: t('dashboard.stats.totalStudents'), value: "2,546", change: "+12%", description: t('dashboard.stats.vs.lastMonth') },
+    { title: t('dashboard.stats.enterprisePartners'), value: "187", change: "+5%", description: t('dashboard.stats.vs.lastQuarter') },
+    { title: t('dashboard.stats.employmentRate'), value: "92.3%", change: "+2.1%", description: t('dashboard.stats.vs.lastYear') },
+    { title: t('dashboard.stats.internshipPositions'), value: "421", change: "+17%", description: t('dashboard.stats.vs.lastMonth') },
+  ];  
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Career Center Management System</h1>
-        <p className="text-muted-foreground">Welcome back, here's your system overview</p>
+        <h1 className="text-3xl font-bold tracking-tight">{t('dashboard.hero.title')}</h1>
+        <p className="text-muted-foreground">{t('dashboard.hero.subtitle')}</p>
       </div>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -40,16 +43,16 @@ const Dashboard = () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card className="col-span-1 overflow-hidden shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Major Distribution</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.cards.majorDistribution')}</CardTitle>
             <PieChart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {[
-                { label: "Computer Science", value: 35 },
-                { label: "Electrical Engineering", value: 27 },
-                { label: "Finance", value: 22 },
-                { label: "Marketing", value: 16 }
+                { label: t('dashboard.majors.cs'), value: 35 },
+                { label: t('dashboard.majors.ee'), value: 27 },
+                { label: t('dashboard.majors.finance'), value: 22 },
+                { label: t('dashboard.majors.marketing'), value: 16 }
               ].map((item) => (
                 <div key={item.label} className="space-y-1">
                   <div className="flex justify-between text-xs">
@@ -65,16 +68,16 @@ const Dashboard = () => {
 
         <Card className="col-span-1 overflow-hidden shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Industry Sectors</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.cards.industrySectors')}</CardTitle>
             <BarChart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {[
-                { label: "Internet/IT", value: 38 },
-                { label: "Finance/Banking", value: 24 },
-                { label: "Education/Training", value: 20 },
-                { label: "Healthcare", value: 18 }
+                { label: t('dashboard.sectors.it'), value: 38 },
+                { label: t('dashboard.sectors.finance'), value: 24 },
+                { label: t('dashboard.sectors.education'), value: 20 },
+                { label: t('dashboard.sectors.healthcare'), value: 18 }
               ].map((item) => (
                 <div key={item.label} className="space-y-1">
                   <div className="flex justify-between text-xs">
@@ -90,16 +93,16 @@ const Dashboard = () => {
 
         <Card className="col-span-1 overflow-hidden shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Monthly Employment</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('dashboard.cards.monthlyEmployment')}</CardTitle>
             <LineChart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {[
-                { label: "Jan-Feb", value: 45 },
-                { label: "Mar-Apr", value: 62 },
-                { label: "May-Jun", value: 78 },
-                { label: "Jul-Aug", value: 86 }
+                { label: t('dashboard.periods.janFeb'), value: 45 },
+                { label: t('dashboard.periods.marApr'), value: 62 },
+                { label: t('dashboard.periods.mayJun'), value: 78 },
+                { label: t('dashboard.periods.julAug'), value: 86 }
               ].map((item) => (
                 <div key={item.label} className="space-y-1">
                   <div className="flex justify-between text-xs">

@@ -1,0 +1,488 @@
+{
+  "login": {
+    "header": {
+      "title": "Career Center Management",
+      "subtitle": "Login to access the system"
+    },
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "teacher@example.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      }
+    },
+    "actions": {
+      "login": "Login",
+      "loggingIn": "Logging in..."
+    },
+    "status": {
+      "successRedirect": "Login successful! Redirecting..."
+    },
+    "toast": {
+      "success": {
+        "title": "Login successful",
+        "desc": "Welcome back"
+      },
+      "error": {
+        "title": "Login failed",
+        "desc": "Please check your credentials"
+      }
+    },
+    "error": {
+      "badCredentials": "Incorrect email or password"
+    },
+    "footer": {
+      "product": "Career Center Management System"
+    }
+  },
+  "dashboard": {
+    "header": {
+      "title": "Career Center Management System",
+      "subtitle": "Welcome to the dashboard"
+    },
+    "cards": {
+      "users": {
+        "title": "Users & Roles",
+        "description": "Manage system users and permission roles"
+      },
+      "students": {
+        "title": "Student Management",
+        "description": "Manage student profiles and academic records"
+      },
+      "enterprises": {
+        "title": "Enterprise Management",
+        "description": "Manage partner companies and opportunities"
+      },
+      "statistics": {
+        "title": "Statistics",
+        "description": "Review analytics and generate reports"
+      },
+      "majorDistribution": "Major Distribution",
+      "industrySectors": "Industry Sectors",
+      "monthlyEmployment": "Monthly Employment"
+    },
+    "actions": {
+      "goTo": "Go to {{title}}"
+    },
+    "hero": {
+      "title": "Career Center Management System",
+      "subtitle": "Welcome back, here's your system overview"
+    },
+    "stats": {
+      "totalStudents": "Total Students",
+      "enterprisePartners": "Enterprise Partners",
+      "employmentRate": "Employment Rate",
+      "internshipPositions": "Internship Positions",
+      "vs": {
+        "lastMonth": "vs. last month",
+        "lastQuarter": "vs. last quarter",
+        "lastYear": "vs. last year"
+      }
+    },
+    "majors": {
+      "cs": "Computer Science",
+      "ee": "Electrical Engineering",
+      "finance": "Finance",
+      "marketing": "Marketing"
+    },
+    "sectors": {
+      "it": "Internet/IT",
+      "finance": "Finance/Banking",
+      "education": "Education/Training",
+      "healthcare": "Healthcare"
+    },
+    "periods": {
+      "janFeb": "Jan-Feb",
+      "marApr": "Mar-Apr",
+      "mayJun": "May-Jun",
+      "julAug": "Jul-Aug"
+    }
+  },
+  "enterprise": {
+    "searchPlaceholder": "Search companies",
+    "filterPlaceholder": "Industry Filter",
+    "allIndustries": "All Industries",
+    "table": {
+      "companyName": "Company Name",
+      "industry": "Industry",
+      "openPositions": "Open Positions"
+    },
+    "noRecords": "No matching enterprise records found",
+    "tryAdjust": "Try adjusting your search or filter"
+  },
+  "statistics": {
+    "common": {
+      "error": "Error"
+    },
+    "loading": "Loading statistics data...",
+    "error": {
+      "title": "Error Loading Statistics",
+      "fetch": "Failed to fetch statistics data"
+    },
+    "actions": {
+      "retry": "Retry"
+    },
+    "empty": {
+      "title": "No Statistics Data Available",
+      "desc": "There is no statistics data to display at this time."
+    },
+    "tabs": {
+      "students": { "short": "Students", "long": "Student Applications" },
+      "enterprises": { "short": "Enterprises", "long": "Enterprise Applications" }
+    },
+    "studentTabs": {
+      "byGrade": "By Grade",
+      "byMajor": "By Major"
+    },
+    "studentCards": {
+      "gradeDistribution": "Grade Distribution",
+      "majorDistribution": "Major Distribution"
+    },
+    "companyTabs": {
+      "fullTime": { "short": "Full Time", "long": "Full Time Applications" },
+      "intern": { "short": "Intern", "long": "Intern Applications" }
+    },
+    "companyCards": {
+      "topFullTime": "Top Companies - Full Time Applications",
+      "topIntern": "Top Companies - Intern Applications"
+    },
+    "table": {
+      "rank": "Rank",
+      "company": "Company",
+      "applications": "Applications",
+      "grade": "Grade",
+      "major": "Major",
+      "intern": "Intern",
+      "fullTime": "Full Time",
+      "total": "Total"
+    }
+  },
+  "layout": {
+    "title": "Career Center Management",
+    "menu": {
+      "home": "Home",
+      "usersRoles": "Users & Roles",
+      "students": "Student Management",
+      "enterprises": "Enterprise Management",
+      "statistics": "Statistics",
+      "settings": "Settings"
+    },
+    "profile": {
+      "goToSettings": "Go to profile settings"
+    },
+    "user": {
+      "defaultName": "User",
+      "noEmail": "No email"
+    }
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  },
+  "permissions": {
+    "toast": {
+      "roleDeleted": "Role deleted successfully",
+      "userDeleted": "User deleted successfully",
+      "roleUpdated": "Role updated successfully",
+      "roleCreated": "Role created successfully",
+      "userUpdated": "User updated successfully",
+      "userCreated": "User created successfully"
+    },
+    "dialog": {
+      "editRole": "Edit Role",
+      "createRole": "Create Role",
+      "editUser": "Edit User",
+      "createUser": "Create User"
+    }
+  },
+  "settings": {
+    "tabs": {
+      "profile": "Profile",
+      "security": "Security"
+    },
+    "toast": {
+      "loadProfileError": "Failed to load profile",
+      "profileUpdated": "Profile updated successfully",
+      "updateProfileError": "Failed to update profile",
+      "logoutSuccess": "Successfully logged out",
+      "logoutError": "Failed to logout",
+      "invalidImageType": "Please select an image file",
+      "imageTooLarge": "Image size should be less than 5MB",
+      "noImage": "No image selected",
+      "avatarUpdated": "The avatar has been updated successfully.",
+      "avatarUploadFailed": "The avatar upload failed.",
+      "fillAllPasswordFields": "Please fill all password fields",
+      "passwordMismatch": "New passwords do not match",
+      "passwordUpdated": "Password updated successfully",
+      "passwordUpdateFailed": "Failed to update password"
+    },
+    "avatar": {
+      "uploadTitle": "Upload profile picture",
+      "selectImage": "Select image",
+      "uploading": "Uploading..."
+    },
+    "form": {
+      "nickname": "Nickname",
+      "email": "Email",
+      "emailUnchangeable": "Email cannot be changed through profile settings",
+      "roles": "Roles",
+      "noRoles": "No roles assigned",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "passwordHint": "Password must be at least 8 characters long and include a mix of letters, numbers, and symbols."
+    },
+    "action": {
+      "updateProfile": "Update Profile",
+      "updatePassword": "Update Password",
+      "logout": "Logout"
+    }
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "language":"Preferred Language"
+  },
+  "students": {
+    "search": { "placeholder": "Search by name, ID or email" },
+    "filter": { "major": "Major Filter", "all": "All Majors" },
+    "action": { "add": "Add Student", "edit": "Edit Student", "delete": "Delete Student" },
+    "table": {
+      "studentId": "Student ID",
+      "name": "Name",
+      "email": "Email",
+      "major": "Major",
+      "class": "Class",
+      "actions": "Actions",
+      "loading": "Loading student data...",
+      "emptyAll": "No student records found",
+      "emptyFilter": "No students found for {{major}}"
+    },
+    "dialog": {
+      "addTitle": "Add Students",
+      "deleteTitle": "Confirm Deletion",
+      "deleteConfirm": "Are you sure you want to delete the record for {{name}}? This action cannot be undone."
+    },
+    "sheet": {
+      "details": "Student Details",
+      "edit": "Edit Student"
+    },
+    "majors": {
+      "computerScience": "Computer Science",
+      "softwareEngineering": "Software Engineering",
+      "electronicEngineering": "Electronic Engineering",
+      "artificialIntelligence": "Artificial Intelligence",
+      "dataScience": "Data Science"
+    }
+  },
+  "route": {
+    "noPermission": "You do not have permission to access this page"
+  },
+  "studentForm": {
+    "validation": {
+      "nameRequired": "Name is required",
+      "studentIdRequired": "Student ID is required",
+      "emailInvalid": "Valid email is required",
+      "majorRequired": "Major is required",
+      "gradeRequired": "Class year is required",
+      "studentTypeInvalid": "Student type must be Bachelor, Master, or PhD"
+    },
+    "upload": {
+      "fileTypeError": "File type error",
+      "fileTypeHint": "Please upload an Excel file (.xlsx or .xls format)",
+      "fileTooLarge": "The file is too large",
+      "fileSizeLimit": "The file size cannot exceed 5MB",
+      "sheetInvalid": "Worksheet {{sheet}} verification failed",
+      "sheetEmpty": "Worksheet {{sheet}} is empty or contains no valid data",
+      "studentTypeInvalid": "Invalid student type",
+      "studentTypeError": "Worksheet {{sheet}} contains invalid student types: {{type}}",
+      "readyTitle": "Data ready",
+      "readyDesc": "Loaded {{count}} student records ({{sheets}} worksheets). Click \"Import Students\" to complete the import.",
+      "failedTitle": "Import failed",
+      "failedDesc": "An error occurred during processing. Excel data cannot be imported.",
+      "noDataTitle": "No data",
+      "noDataDesc": "Please upload a valid Excel file first."
+    },
+    "view": {
+      "major": "Major",
+      "grade": "Class Year",
+      "email": "Email",
+      "studentType": "Student Type",
+      "status": "Status",
+      "gender": "Gender",
+      "employmentStatus": "Employment Status"
+    },
+    "bulk": {
+      "selectFile": "Select Excel File",
+      "dragDrop": "or drag and drop file here",
+      "fileSelected": "File Selected",
+      "requirementsTitle": "Requirements:",
+      "requirements": {
+        "format": "Excel file (.xlsx, .xls) format",
+        "columns": "Required columns: Name, Student ID, Email, Major, Class Year, Student Type(Bachelor, Master, Doctoral)",
+        "header": "First row should contain column headers"
+      },
+      "import": "Import Students"
+    },
+    "tabs": {
+      "single": "Add Single Student",
+      "bulk": "Bulk Import"
+    },
+    "actions": {
+      "add": "Add Student",
+      "save": "Save Changes"
+    },
+    "fields": {
+      "id": "ID",
+      "name": "Full Name",
+      "namePlaceholder": "Enter student name",
+      "studentId": "Student ID",
+      "studentIdPlaceholder": "Enter student ID",
+      "email": "Email",
+      "emailPlaceholder": "Enter student email",
+      "major": "Major",
+      "majorPlaceholder": "Select major",
+      "grade": "Class Year",
+      "gradePlaceholder": "Select class year",
+      "studentType": "Student Type",
+      "studentTypePlaceholder": "Select student type"
+    },
+    "studentType": {
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "phd": "Doctoral"
+    }
+  },
+  "roles": {
+    "form": {
+      "validation": {
+        "nameRequired": "Role name is required"
+      },
+      "error": {
+        "saveFailed": "Failed to save role"
+      },
+      "title": {
+        "edit": "Edit Role",
+        "add": "Add New Role"
+      },
+      "success": {
+        "updated": "Role successfully updated!",
+        "created": "Role successfully created!"
+      },
+      "fields": {
+        "code": "Role Code",
+        "codePlaceholder": "Enter role code",
+        "name": "Role Name",
+        "namePlaceholder": "Enter role name",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter role description",
+        "permissions": "Permissions"
+      },
+      "actions": {
+        "cancel": "Cancel",
+        "update": "Update Role",
+        "create": "Create Role"
+      }
+    },
+    "list": {
+      "empty": "No roles found",
+      "columns": {
+        "name": "Role Name",
+        "description": "Description",
+        "permissions": "Permissions",
+        "actions": "Actions"
+      }
+    },
+    "permissions": {
+      "user_view": "View Users",
+      "user_add": "Add Users",
+      "user_edit": "Edit Users",
+      "user_delete": "Delete Users",
+      "role_view": "View Roles",
+      "role_add": "Add Roles",
+      "role_edit": "Edit Roles",
+      "role_delete": "Delete Roles",
+      "student_view": "View Students",
+      "student_edit": "Edit Students",
+      "enterprise_view": "View Enterprises",
+      "enterprise_edit": "Edit Enterprises"
+    },
+    "codes": {
+      "admin": "Admin",
+      "teacher": "Teacher",
+      "project": "Project Admin",
+      "student": "Student"
+    }
+  },
+  "search": {
+    "tabs": {
+      "roles": "Role Management",
+      "users": "User Management"
+    },
+    "placeholder": {
+      "roles": "Search roles...",
+      "users": "Search users..."
+    },
+    "addRole": "Add Role",
+    "addUser": "Add User",
+    "addPrefix": "Add ",
+    "types": {
+      "role": "Role",
+      "user": "User",
+      "roles": "roles",
+      "users": "users"
+    },
+    "noResults": "No {{type}} found matching \"{{query}}\"",
+    "columns": {
+      "roleName": "Role Name",
+      "description": "Description",
+      "permissions": "Permissions",
+      "actions": "Actions",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "clear": "Clear"
+    }
+  },
+  "users": {
+    "form": {
+      "title": { "edit": "Edit User", "add": "Add New User" },
+      "fields": {
+        "username": "Username",
+        "usernamePlaceholder": "Enter username",
+        "email": "Email",
+        "emailPlaceholder": "Enter user email",
+        "role": "Role",
+        "rolePlaceholder": "Select a role"
+      },
+      "validation": {
+        "usernameRequired": "Username is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email format",
+        "roleRequired": "Role is required"
+      },
+      "success": {
+        "updated": "User successfully updated!",
+        "created": "User successfully created!"
+      },
+      "error": { "operationFailed": "Operation failed" },
+      "actions": { "cancel": "Cancel", "update": "Update User", "create": "Create User" }
+    },
+    "list": {
+      "empty": "No users found",
+      "columns": { "username": "Username", "email": "Email", "role": "Role", "actions": "Actions" },
+      "actions": { "edit": "Edit", "delete": "Delete" },
+      "toast": { "loadFailed": "Failed to load users" }
+    }
+  }
+}
+
+

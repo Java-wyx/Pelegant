@@ -17,11 +17,12 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useAuthStore } from "@/store/authStore";
+import LanguageSwitcher from '@/components/LanguageSwitcher'
+import { useTranslation } from 'react-i18next';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
-
 
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
@@ -33,6 +34,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [username,setUsername ]= useState({
       nickname: "",
   });
+  const { t } = useTranslation();
+
 
   // const [avatarSrc, setAvatarSrc] = useState("");
 
@@ -79,32 +82,32 @@ const getAvatarUrl = (avatar: string | undefined): string => {
 
   // 默认菜单配置，包含权限码
   const defaultMenus = [
-    { name: "Home", path: "/", icon: "home", permission: "" },
+    { name: t('layout.menu.home'), path: "/", icon: "home", permission: "" },
     {
-      name: "Users & Roles",
+      name: t('layout.menu.usersRoles'),
       path: "/permissions",
       icon: "shield",
       permission: "system:user:list",
     },
     {
-      name: "Student Management",
+      name: t('layout.menu.students'),
       path: "/students",
       icon: "users",
       permission: "students.manage",
     },
     {
-      name: "Enterprise Management",
+      name: t('layout.menu.enterprises'),
       path: "/enterprises",
       icon: "building",
       permission: "pelegant:company:query",
     },
     {
-      name: "Statistics",
+      name: t('layout.menu.statistics'),
       path: "/statistics",
       icon: "chart",
       permission: "statistics.view",
     },
-    { name: "Settings", path: "/settings", icon: "settings", permission: "" },
+    { name: t('layout.menu.settings'), path: "/settings", icon: "settings", permission: "" },
   ];
 
   interface MenuItemWithPermission {
@@ -203,7 +206,7 @@ const getAvatarUrl = (avatar: string | undefined): string => {
             to="/"
             className="flex-1 text-base font-semibold text-slate-800 hover:text-slate-900 transition-colors truncate"
           >
-            Career Center Management
+            {t('layout.title')}
           </Link>
           <Button
             variant="ghost"
@@ -259,6 +262,7 @@ const getAvatarUrl = (avatar: string | undefined): string => {
         {/* Topbar */}
         <header className="bg-white border-b border-slate-100 shadow-sm z-10 sticky top-0">
           <div className="flex h-14 items-center justify-between px-4">
+            <LanguageSwitcher />
             <Button
               variant="ghost"
               size="icon"
@@ -275,7 +279,7 @@ const getAvatarUrl = (avatar: string | undefined): string => {
               <div
                 onClick={handleAvatarClick}
                 className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-3"
-                title="Go to profile settings"
+                title={t('layout.profile.goToSettings')}
               >
                 <Avatar className="h-8 w-8 ring-2 ring-slate-100">
                   <AvatarImage src={getAvatarUrl(user?.avatar)} />
@@ -286,10 +290,10 @@ const getAvatarUrl = (avatar: string | undefined): string => {
 
                 <div className="text-sm hidden sm:block">
                   <p className="font-medium text-slate-800">
-                    {username?.nickname || "User"}
+                    {username?.nickname || t('layout.user.defaultName')}
                   </p>
                   <p className="text-xs text-slate-500">
-                    {user?.email || "No email"}
+                    {user?.email || t('layout.user.noEmail')}
                   </p>
                 </div>
               </div>
