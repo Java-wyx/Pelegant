@@ -1,0 +1,240 @@
+{
+  "editProfile": {
+    "title": "Editar perfil",
+    "avatar": {
+      "change": "Toca para cambiar tu foto de perfil",
+      "uploadSuccess": "Foto de perfil subida correctamente",
+      "uploadError": "Error al subir la foto de perfil"
+    },
+    "form": {
+      "nickname": {
+        "label": "Apodo",
+        "placeholder": "Ingresa tu apodo"
+      },
+      "gender": {
+        "label": "Género",
+        "male": "Hombre",
+        "female": "Mujer",
+        "other": "Otro"
+      },
+      "submit": "Guardar perfil",
+      "saving": "Guardando..."
+    },
+    "toast": {
+      "success": {
+        "title": "Éxito",
+        "description": "El perfil se ha actualizado correctamente"
+      },
+      "error": {
+        "title": "Error",
+        "loadError": "Error al cargar los datos del perfil",
+        "saveError": "Error al actualizar el perfil",
+        "validation": {
+          "nicknameRequired": "Por favor, proporciona un apodo"
+        }
+      }
+    }
+  },
+  "changePassword": {
+    "title": "Cambiar contraseña",
+    "description": "Crea una contraseña segura usando letras, números y símbolos",
+    "form": {
+      "currentPassword": {
+        "label": "Contraseña actual",
+        "placeholder": "Ingresa tu contraseña actual"
+      },
+      "newPassword": {
+        "label": "Nueva contraseña",
+        "placeholder": "Ingresa una nueva contraseña"
+      },
+      "confirmPassword": {
+        "label": "Confirmar nueva contraseña",
+        "placeholder": "Confirma tu nueva contraseña"
+      },
+      "submit": "Actualizar contraseña",
+      "updating": "Actualizando..."
+    },
+    "passwordStrength": {
+      "weak": "Contraseña débil",
+      "medium": "Contraseña media",
+      "strong": "Contraseña fuerte"
+    },
+    "toast": {
+      "success": {
+        "title": "Éxito",
+        "description": "La contraseña se ha cambiado correctamente"
+      },
+      "error": {
+        "title": "Error",
+        "fieldsRequired": "Por favor, completa todos los campos",
+        "passwordsNotMatch": "Las contraseñas no coinciden",
+        "default": "Error al cambiar la contraseña"
+      }
+    }
+  },
+  "accountSecurity": {
+    "title": "Seguridad de la cuenta",
+    "items": {
+      "changePassword": {
+        "label": "Cambiar contraseña",
+        "description": "Actualiza la contraseña de tu cuenta"
+      },
+      "privacySettings": {
+        "label": "Configuración de privacidad",
+        "description": "Gestiona tus datos y privacidad"
+      }
+    }
+  },
+  "common": {
+    "saving": "Guardando...",
+    "loading": "Cargando...",
+    "back": "Atrás"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "submitting": "Iniciando sesión...",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "success": "Inicio de sesión exitoso",
+    "welcome": "¡Bienvenido de nuevo, {{name}}!",
+    "error": {
+      "default": "Error al iniciar sesión",
+      "invalidCredentials": "Usuario o contraseña incorrectos",
+      "invalidFormat": "Formato inválido: el nombre de usuario debe ser alfanumérico"
+    },
+    "tryAgain": "Intentar de nuevo",
+    "passwordChange": {
+      "title": "Cambia tu contraseña inicial",
+      "description": "Para mayor seguridad, te recomendamos cambiar tu contraseña antes de continuar con la configuración.",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar nueva contraseña",
+      "updateButton": "Actualizar contraseña",
+      "updating": "Actualizando...",
+      "skipButton": "Omitir y continuar con la configuración del perfil",
+      "success": "Contraseña cambiada",
+      "successMessage": "Tu contraseña se ha actualizado correctamente.",
+      "error": "Error al cambiar la contraseña",
+      "errorMessage": "No se pudo actualizar la contraseña. Por favor, inténtalo de nuevo."
+    }
+  },
+  "profile": {
+    "menu": {
+      "myJobs": "Mis trabajos",
+      "myJobsDescription": "Ver trabajos aplicados y guardados",
+      "myResume": "Mi currículum",
+      "myResumeDescription": "Ver y actualizar tu currículum",
+      "accountSecurity": "Seguridad de la cuenta",
+      "accountSecurityDescription": "Actualizar contraseña y configuración de seguridad",
+      "helpSupport": "Ayuda y soporte",
+      "helpSupportDescription": "Obtén ayuda o contacta al soporte"
+    },
+    "logout": "Cerrar sesión",
+    "logoutSuccess": "Has cerrado la sesión",
+    "redirecting": "Redirigiendo a la página de inicio de sesión...",
+    "defaultName": "Usuario"
+  },
+  "language": {
+    "title": "Idioma",
+    "english": "English (Inglés)",
+    "chinese": "中文 (Chino)",
+    "spanish": "Español",
+    "french": "Français (Francés)",
+    "hindi": "हिन्दी (Hindi)",
+    "changeSuccess": "Idioma cambiado correctamente"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "appearance": "Apariencia",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
+    "help": "Ayuda",
+    "helpDescription": "Centro de ayuda y soporte"
+  },
+  "helpSupport": {
+    "title": "Ayuda y soporte",
+    "items": {
+      "termsOfUse": {
+        "label": "Términos de uso",
+        "description": "Lee nuestros términos de uso"
+      },
+      "privacyPolicy": {
+        "label": "Política de privacidad",
+        "description": "Conoce cómo manejamos tus datos"
+      },
+      "feedback": {
+        "label": "Comentarios",
+        "description": "Danos tu opinión"
+      }
+    }
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "sections": {
+      "commitment": {
+        "title": "Nuestro compromiso con la privacidad",
+        "content": "Estamos comprometidos a proteger su privacidad y garantizar la seguridad de su información personal. Esta Política de privacidad explica cómo recopilamos, usamos y protegemos su información cuando utiliza nuestros servicios."
+      },
+      "collection": {
+        "title": "Información que recopilamos",
+        "content": "Podemos recopilar los siguientes tipos de información:",
+        "items": [
+          "Información de identificación personal (nombre, correo electrónico, número de teléfono, etc.)",
+          "Currículum e historial laboral",
+          "Preferencias de empleo e historial de solicitudes",
+          "Información del dispositivo y de uso"
+        ]
+      },
+      "usage": {
+        "title": "Cómo utilizamos su información",
+        "content": "Utilizamos su información para:",
+        "items": [
+          "Proporcionar y mejorar nuestros servicios",
+          "Conectarlo con oportunidades laborales relevantes",
+          "Comunicarnos con usted sobre su cuenta y oportunidades",
+          "Analizar y mejorar nuestra plataforma"
+        ]
+      },
+      "rights": {
+        "title": "Sus derechos",
+        "content": "Usted tiene derecho a:",
+        "items": [
+          "Acceder a su información personal",
+          "Solicitar la corrección de su información",
+          "Solicitar la eliminación de su información",
+          "Optar por no recibir comunicaciones de marketing"
+        ]
+      }
+    },
+    "lastUpdated": "Última actualización: {{date}}"
+  },
+  "terms": {
+    "acceptance": {
+      "title": "Aceptación de los términos",
+      "content": "Al acceder o utilizar nuestros servicios, usted acepta estar sujeto a estos Términos de uso. Si no está de acuerdo con estos términos, por favor no utilice nuestros servicios."
+    },
+    "accounts": {
+      "title": "Cuentas de usuario",
+      "content": "Usted es responsable de mantener la confidencialidad de las credenciales de su cuenta y de todas las actividades que ocurran bajo su cuenta."
+    },
+    "content": {
+      "title": "Contenido del usuario",
+      "content": "Usted conserva la propiedad de cualquier contenido que envíe a nuestra plataforma, pero nos otorga una licencia para usar, mostrar y distribuir dicho contenido en relación con nuestros servicios."
+    },
+    "privacy": {
+      "title": "Privacidad",
+      "content": "Su uso de nuestros servicios también se rige por nuestra Política de privacidad, que explica cómo recopilamos, usamos y protegemos su información."
+    },
+    "modifications": {
+      "title": "Modificaciones de los términos",
+      "content": "Nos reservamos el derecho de modificar estos términos en cualquier momento. Le notificaremos cualquier cambio importante a través de nuestra plataforma."
+    },
+    "termination": {
+      "title": "Terminación",
+      "content": "Podemos suspender o dar por terminado su acceso a nuestros servicios en cualquier momento, con o sin causa, y con o sin previo aviso."
+    }
+  }
+}

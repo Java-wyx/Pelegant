@@ -316,6 +316,35 @@
       "removed": "Job removed from saved"
     }
   },
+  "terms": {
+    "title": "Terms of Service",
+    "intro": "Please read the following terms of service carefully before using our application.",
+    "lastUpdated": "Last updated: {{date}}",
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content": "By accessing or using our service, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service."
+    },
+    "accounts": {
+      "title": "User Accounts",
+      "content": "You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account."
+    },
+    "content": {
+      "title": "Content Guidelines",
+      "content": "Users must not post any illegal, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable content."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": "Your use of our services is also governed by our Privacy Policy, which outlines how we collect, use, and protect your information."
+    },
+    "modifications": {
+      "title": "Service Modifications",
+      "content": "We reserve the right to modify or discontinue the service at any time, temporarily or permanently, with or without notice."
+    },
+    "termination": {
+      "title": "Termination",
+      "content": "We may terminate or suspend your account immediately, without prior notice, for any reason, including if you breach the Terms of Service."
+    }
+  },
   "helpSupport": {
     "title": "Help & Support",
     "items": {
@@ -332,7 +361,10 @@
   "language": {
     "title": "Language",
     "english": "English",
-    "chinese": "中文",
+    "chinese": "中文 (Chinese)",
+    "spanish": "Español (Spanish)",
+    "french": "Français (French)",
+    "hindi": "हिन्दी (Hindi)",
     "changeSuccess": "Language changed successfully"
   },
   "settings": {
@@ -364,5 +396,46 @@
     "saveJobError": "Failed to save job",
     "fetchSavedError": "Failed to get saved status",
     "searchError": "Search failed"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: {{date}}",
+    "sections": {
+      "commitment": {
+        "title": "Our Privacy Commitment",
+        "content": "We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we protect your personal data when you use our application, as well as your privacy rights and how the law protects you."
+      },
+      "collection": {
+        "title": "Information We Collect",
+        "content": "We collect information you provide directly to us, such as when you create or modify your account, request services, or contact customer support. This may include:"
+      },
+      "collectionItems": [
+        "Personal identification information (name, email address, phone number)",
+        "Profile information (resume, professional details, preferences)",
+        "Account credentials"
+      ],
+      "usage": {
+        "title": "How We Use Your Information",
+        "content": "We use your information to:"
+      },
+      "usageItems": [
+        "Provide, maintain, and improve our services",
+        "Process and complete transactions",
+        "Send you technical notices and support messages",
+        "Respond to your comments, questions, and customer service requests"
+      ],
+      "rights": {
+        "title": "Your Rights",
+        "content": "You have the right to:"
+      },
+      "rightsItems": [
+        "Access your personal data",
+        "Request correction of your personal data",
+        "Request erasure of your personal data",
+        "Object to processing of your personal data",
+        "Request restriction of processing your personal data",
+        "Request transfer of your personal data"
+      ]
+    }
   }
 }

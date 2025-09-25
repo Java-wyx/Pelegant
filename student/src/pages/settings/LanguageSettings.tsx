@@ -11,6 +11,7 @@ type LanguageOption = {
   code: string;
   name: string;
   nativeName: string;
+  dir?: 'ltr' | 'rtl';
 };
 
 const LanguageSettings = () => {
@@ -20,7 +21,11 @@ const LanguageSettings = () => {
 
   const languages: LanguageOption[] = [
     { code: 'en', name: 'English', nativeName: 'English' },
-    { code: 'zh', name: '中文', nativeName: '中文' }
+    { code: 'zh', name: '中文', nativeName: '中文' },
+    { code: 'fr', name: 'Français', nativeName: 'Français' },
+    { code: 'hi', name: 'हिन्दी', nativeName: 'हिन्दी' },
+    { code: 'es', name: 'Español', nativeName: 'Español' },
+    { code: 'ar', name: 'العربية', nativeName: 'العربية', dir: 'rtl' }
   ];
 
   const changeLanguage = (lng: string) => {
