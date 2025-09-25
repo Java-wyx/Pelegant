@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Save, Camera, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -13,6 +14,7 @@ import { useAuthStore } from "@/stores/auth";
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { toast } = useToast();
   const { setUserInfo } = useAuthStore();
 
@@ -41,8 +43,8 @@ const EditProfile = () => {
         setIsFetching(false);
       } catch (error) {
         toast({
-          title: "Error",
-          description: "Failed to load profile data",
+          title: t('editProfile.toast.error.title'),
+          description: t('editProfile.toast.error.loadError'),
           variant: "destructive",
         });
         navigate("/profile");
@@ -57,8 +59,8 @@ const EditProfile = () => {
 
     if (!profile.nickname) {
       toast({
-        title: "Error",
-        description: "Please provide your nickname",
+        title: t('editProfile.toast.error.title'),
+        description: t('editProfile.toast.error.validation.nicknameRequired'),
         variant: "destructive",
       });
       return;
@@ -81,14 +83,14 @@ const EditProfile = () => {
       setUserInfo(freshUserInfo);
 
       toast({
-        title: "Success",
-        description: "Profile has been updated successfully",
+        title: t('editProfile.toast.success.title'),
+        description: t('editProfile.toast.success.description'),
       });
       navigate("/profile");
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to update profile",
+        title: t('editProfile.toast.error.title'),
+        description: t('editProfile.toast.error.saveError'),
         variant: "destructive",
       });
     } finally {
@@ -119,16 +121,16 @@ const handleAvatarFileChange = async (e: React.ChangeEvent<HTMLInputElement>) =>
           avatar: avatarUrl, // 更新头像 URL
         }));
         toast({
-          title: "Success",
-          description: "Avatar uploaded successfully",
+          title: t('editProfile.toast.success.title'),
+          description: t('editProfile.avatar.uploadSuccess'),
         });
       }
     } catch (error) {
       // 如果上传失败，清除预览并显示错误信息
       setAvatarPreview(null);
       toast({
-        title: "Error",
-        description: error.message || "Failed to upload avatar",
+        title: t('editProfile.toast.error.title'),
+        description: error.message || t('editProfile.avatar.uploadError'),
         variant: "destructive",
       });
     }
@@ -161,7 +163,7 @@ const handleAvatarFileChange = async (e: React.ChangeEvent<HTMLInputElement>) =>
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-semibold">Edit Profile</h1>
+          <h1 className="text-xl font-semibold">{t('editProfile.title')}</h1>
         </div>
 
         <BlurContainer className="p-5">
@@ -191,26 +193,26 @@ const handleAvatarFileChange = async (e: React.ChangeEvent<HTMLInputElement>) =>
                   />
                 </label>
               </div>
-              <p className="text-xs text-muted-foreground">Tap to change your profile picture</p>
+              <p className="text-xs text-muted-foreground">{t('editProfile.avatar.change')}</p>
             </div>
 
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="nickname" className="text-sm font-medium">
-                  NickName
+                  {t('editProfile.form.nickname.label')}
                 </Label>
                 <Input
                   id="nickname"
                   name="nickname"
                   value={profile.nickname}
                   onChange={handleChange}
-                  placeholder="Enter your nickname"
+                  placeholder={t('editProfile.form.nickname.placeholder')}
                   className="bg-background/50"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium">Gender</Label>
+                <Label className="text-sm font-medium">{t('editProfile.form.gender.label')}</Label>
                 <RadioGroup 
                   value={profile.gender} 
                   onValueChange={(value) => setProfile(prev => ({ ...prev, gender: value }))}
@@ -218,15 +220,15 @@ const handleAvatarFileChange = async (e: React.ChangeEvent<HTMLInputElement>) =>
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="1" id="male" />
-                    <Label htmlFor="male">Male</Label>
+                    <Label htmlFor="male">{t('editProfile.form.gender.male')}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="2" id="female" />
-                    <Label htmlFor="female">Female</Label>
+                    <Label htmlFor="female">{t('editProfile.form.gender.female')}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="3" id="other" />
-                    <Label htmlFor="other">Other</Label>
+                    <Label htmlFor="other">{t('editProfile.form.gender.other')}</Label>
                   </div>
                 </RadioGroup>
               </div>
@@ -241,11 +243,11 @@ const handleAvatarFileChange = async (e: React.ChangeEvent<HTMLInputElement>) =>
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Saving...
+                    {t('editProfile.form.saving')}
                   </div>
                 ) : (
                   <div className="flex items-center justify-center">
-                    <Save className="mr-2 h-4 w-4" /> Save Profile
+                    <Save className="mr-2 h-4 w-4" /> {t('editProfile.form.submit')}
                   </div>
                 )}
               </Button>

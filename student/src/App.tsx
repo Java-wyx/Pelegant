@@ -25,6 +25,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import HelpSupport from "./pages/HelpSupport";
 import TermsOfUse from "./pages/TermsOfUse";
 import Feedback from "./pages/Feedback";
+import Settings from "./pages/Settings";
+import LanguageSettings from "./pages/settings/LanguageSettings";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +52,8 @@ const App = () => (
           <Route path="/account-security" element={<AuthRoute><AccountSecurity /></AuthRoute>} />
           <Route path="/my-jobs" element={<AuthRoute><MyJobs /></AuthRoute>} />
           <Route path="/my-resume" element={<AuthRoute><MyResume /></AuthRoute>} />
+          <Route path="/settings" element={<AuthRoute><Settings /></AuthRoute>} />
+          <Route path="/settings/language" element={<AuthRoute><LanguageSettings /></AuthRoute>} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/help-support" element={<HelpSupport />} />
           <Route path="/terms-of-use" element={<TermsOfUse />} />

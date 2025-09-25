@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { SearchInput } from "@/components/search/SearchInput";
 import { JobList } from "@/components/job/JobList";
 import { BlurContainer } from "@/components/ui/BlurContainer";
@@ -11,6 +12,7 @@ import { useSearchStore } from "@/stores/search";
 import type { Job } from "@/types/job";
 
 const Search = () => {
+  const { t } = useTranslation();
   const {
     searchInput,
     activeCategory,
@@ -25,18 +27,18 @@ const Search = () => {
   const [isFiltering, setIsFiltering] = useState(false);
   const navigate = useNavigate();
 
-  const categories = {
-    All: "0",
-    "Full Time ": "1",
-    Internship: "2",
-  };
+  const categories = useMemo(() => ({
+    [t('search.categories.all')]: "0",
+    [t('search.categories.fullTime')]: "1",
+    [t('search.categories.internship')]: "2",
+  }), [t]);
 
   const filterByCategory = useCallback((results: Job[], category: string) => {
-    if (category === "All") return results;
+    if (category === t('search.categories.all')) return results;
     return results.filter(
       (job) => job.type === categories[category as keyof typeof categories]
     );
-  }, []);
+  }, [categories, t]);
 
   useEffect(() => {
     if (searchResults && searchResults.length > 0) {
@@ -77,7 +79,12 @@ const Search = () => {
         const axiosError = error as AxiosError;
         console.error("Search error:", error);
         setFilteredResults([]);
-        if (axiosError.response?.status === 401) navigate("/login");
+        if (axiosError.response?.status === 401) {
+        toast.error(t('login.error.default'));
+        navigate("/login");
+      } else {
+        toast.error(t('search.searchError'));
+      }
       } finally {
         setIsFiltering(false);
       }
@@ -105,7 +112,12 @@ const Search = () => {
       const axiosError = error as AxiosError;
       console.error("Search error:", error);
       setFilteredResults([]);
-      if (axiosError.response?.status === 401) navigate("/login");
+      if (axiosError.response?.status === 401) {
+        toast.error(t('login.error.default'));
+        navigate("/login");
+      } else {
+        toast.error(t('search.searchError'));
+      }
     } finally {
       setIsFiltering(false);
     }
@@ -113,15 +125,18 @@ const Search = () => {
 
   const fetchWithSavedStatus = async (jobs: Job[]) => {
     const jobIds = jobs.map((job) => job.id);
+    if (jobIds.length === 0) return jobs;
+    
     try {
-      const savedMap = await JobService.getSavedStatusBatch(jobIds);
-      const savedIds = Object.entries(savedMap)
+      const savedStatus = await JobService.getSavedStatusBatch(jobIds);
+      const savedIds = Object.entries(savedStatus)
         .filter(([_, isSaved]) => isSaved)
         .map(([id]) => id);
       setSavedJobIds(savedIds);
       return jobs;
     } catch (err) {
-      console.error("获取收藏状态失败：", err);
+      console.error(t('search.fetchSavedError'), err);
+      toast.error(t('search.fetchSavedError'));
       return jobs;
     }
   };
@@ -134,14 +149,14 @@ const Search = () => {
         isSaved ? prevIds.filter((id) => id !== jobId) : [...prevIds, jobId]
       );
     } catch (error) {
-      console.error("Failed to save job:", error);
-      toast.error("Failed to save job");
+      console.error(t('search.saveJobError'), error);
+      toast.error(t('search.saveJobError'));
     }
   };
 
   const handleClearSearch = () => {
     setSearchInput("");
-    setActiveCategory("All");
+    setActiveCategory(t('search.categories.all'));
   };
 
   // 🔥 用 useMemo 优化渲染逻辑
@@ -149,7 +164,7 @@ const Search = () => {
     if (isFiltering) {
       return (
         <div className="text-center py-16 bg-white dark:bg-gray-900 rounded-xl shadow-sm">
-          <p className="text-muted-foreground">Searching...</p>
+          <p className="text-muted-foreground">{t('search.searching')}</p>
         </div>
       );
     }
@@ -159,11 +174,7 @@ const Search = () => {
         <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm">
           <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-800">
             <p className="text-sm text-muted-foreground">
-              Found{" "}
-              <span className="font-medium text-foreground">
-                {filteredResults.length}
-              </span>{" "}
-              results
+              {t('search.resultsFound', { count: filteredResults.length })}
             </p>
           </div>
           <JobList
@@ -182,8 +193,8 @@ const Search = () => {
             size={48}
             className="mx-auto mb-4 text-muted-foreground opacity-50"
           />
-          <h3 className="text-lg font-medium mb-1">No results found</h3>
-          <p className="text-muted-foreground">Try different keywords or filters</p>
+          <h3 className="text-lg font-medium mb-1">{t('search.noResults.title')}</h3>
+          <p className="text-muted-foreground">{t('search.noResults.description')}</p>
         </div>
       );
     }
@@ -194,8 +205,8 @@ const Search = () => {
           size={48}
           className="mx-auto mb-4 text-muted-foreground opacity-50 animate-pulse"
         />
-        <h3 className="text-lg font-medium mb-1">Start your search</h3>
-        <p className="text-muted-foreground">Type a keyword to explore jobs</p>
+        <h3 className="text-lg font-medium mb-1">{t('search.startSearching.title')}</h3>
+        <p className="text-muted-foreground">{t('search.startSearching.description')}</p>
       </div>
     );
   }, [isFiltering, filteredResults, searchInput, savedJobIds]);
@@ -205,7 +216,7 @@ const Search = () => {
       <form onSubmit={handleSearchSubmit} className="space-y-4">
         <BlurContainer className="mb-4">
           <SearchInput
-            placeholder="Search jobs..."
+            placeholder={t('search.placeholder')}
             value={searchInput}
             onChange={(e) => {
               setSearchInput(e.target.value);

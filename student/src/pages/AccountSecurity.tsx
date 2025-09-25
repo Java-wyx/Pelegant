@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Lock, Key } from "lucide-react";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const AccountSecurity = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   
   const containerVariants = {
@@ -27,15 +29,15 @@ const AccountSecurity = () => {
   const securityItems = [
     { 
       icon: Key, 
-      label: "Change Password", 
-      description: "Update your account password",
+      label: t('accountSecurity.items.changePassword.label'), 
+      description: t('accountSecurity.items.changePassword.description'),
       color: "text-blue-500",
       route: "/change-password"
     },
     { 
       icon: Lock, 
-      label: "Privacy Settings", 
-      description: "Manage your data and privacy",
+      label: t('accountSecurity.items.privacySettings.label'), 
+      description: t('accountSecurity.items.privacySettings.description'),
       color: "text-emerald-500",
       route: "/privacy-policy"
     }
@@ -65,7 +67,7 @@ const AccountSecurity = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-semibold text-foreground">Account Security</h1>
+          <h1 className="text-xl font-semibold text-foreground">{t('accountSecurity.title')}</h1>
         </motion.div>
         
         <motion.div 

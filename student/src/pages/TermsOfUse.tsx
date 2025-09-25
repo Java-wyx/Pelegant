@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const TermsOfUse = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   
   const containerVariants = {
@@ -17,28 +19,34 @@ const TermsOfUse = () => {
   
   const termsItems = [
     {
-      title: "Acceptance of Terms",
-      content: "By accessing or using our service, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our service."
+      key: 'acceptance',
+      title: t('terms.acceptance.title'),
+      content: t('terms.acceptance.content')
     },
     {
-      title: "User Accounts",
-      content: "You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account."
+      key: 'accounts',
+      title: t('terms.accounts.title'),
+      content: t('terms.accounts.content')
     },
     {
-      title: "Content Guidelines",
-      content: "Users may not post content that is illegal, harmful, threatening, abusive, harassing, defamatory, or otherwise objectionable."
+      key: 'content',
+      title: t('terms.content.title'),
+      content: t('terms.content.content')
     },
     {
-      title: "Privacy Policy",
-      content: "Your use of our service is also governed by our Privacy Policy, which outlines how we collect, use, and protect your information."
+      key: 'privacy',
+      title: t('terms.privacy.title'),
+      content: t('terms.privacy.content')
     },
     {
-      title: "Service Modifications",
-      content: "We reserve the right to modify or discontinue, temporarily or permanently, the service with or without notice."
+      key: 'modifications',
+      title: t('terms.modifications.title'),
+      content: t('terms.modifications.content')
     },
     {
-      title: "Termination",
-      content: "We may terminate or suspend your account immediately, without prior notice, for conduct that we believe violates these Terms of Use."
+      key: 'termination',
+      title: t('terms.termination.title'),
+      content: t('terms.termination.content')
     }
   ];
   
@@ -50,35 +58,35 @@ const TermsOfUse = () => {
         animate="animate"
         className="space-y-6"
       >
-        <div className="flex items-center mb-6">
+        <div className="flex items-center justify-between mb-6">
           <button 
-            onClick={() => navigate("/help-support")}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 mr-3"
+            onClick={() => navigate(-1)}
+            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+            aria-label={t('common.back')}
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-semibold text-foreground">Terms of Use</h1>
+          <h1 className="text-xl font-semibold">{t('terms.title')}</h1>
+          <div className="w-10"></div> {/* For alignment */}
         </div>
         
-        <BlurContainer className="p-4">
-          <p className="text-sm text-muted-foreground mb-4">
-            Last updated: April 3, 2025
+        <BlurContainer className="p-6">
+          <p className="text-sm text-muted-foreground mb-6">
+            {t('terms.lastUpdated', { date: '2024-09-25' })}
           </p>
           
-          <p className="mb-4">
-            Please read these terms of use carefully before using our application.
+          <p className="mb-6 text-sm">
+            {t('terms.intro')}
           </p>
           
-          <Separator className="my-4" />
-          
-          <Accordion type="single" collapsible className="w-full">
-            {termsItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {termsItems.map((item) => (
+              <AccordionItem key={item.key} value={item.key} className="border-b">
+                <AccordionTrigger className="text-left text-sm font-medium hover:no-underline">
                   {item.title}
                 </AccordionTrigger>
-                <AccordionContent>
-                  {item.content}
+                <AccordionContent className="pt-2 text-muted-foreground">
+                  <p className="text-sm">{item.content}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}

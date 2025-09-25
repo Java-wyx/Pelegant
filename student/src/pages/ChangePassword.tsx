@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
+import { useTranslation } from "react-i18next";
 
 const ChangePassword = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [currentPassword, setCurrentPassword] = useState("");
@@ -23,8 +25,8 @@ const ChangePassword = () => {
     
     if (!currentPassword || !newPassword || !confirmPassword) {
       toast({
-        title: "Error",
-        description: "Please fill in all password fields",
+        title: t('changePassword.toast.error.title'),
+        description: t('changePassword.toast.error.fieldsRequired'),
         variant: "destructive",
       });
       return;
@@ -32,8 +34,8 @@ const ChangePassword = () => {
     
     if (newPassword !== confirmPassword) {
       toast({
-        title: "Error",
-        description: "New passwords do not match",
+        title: t('changePassword.toast.error.title'),
+        description: t('changePassword.toast.error.passwordsNotMatch'),
         variant: "destructive",
       });
       return;
@@ -45,18 +47,18 @@ const ChangePassword = () => {
       await updatePassword({
         oldPassword: currentPassword,
         newPassword: newPassword,
-        t: (key: string) => key, // 简单翻译函数占位
+        t,
       });
       
       toast({
-        title: "Success",
-        description: "Password has been changed successfully",
+        title: t('changePassword.toast.success.title'),
+        description: t('changePassword.toast.success.description'),
       });
       navigate("/account-security");
     } catch (error) {
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to change password",
+        title: t('changePassword.toast.error.title'),
+        description: error instanceof Error ? error.message : t('changePassword.toast.error.default'),
         variant: "destructive",
       });
     } finally {
@@ -101,7 +103,7 @@ const ChangePassword = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-semibold">Change Password</h1>
+          <h1 className="text-xl font-semibold">{t('changePassword.title')}</h1>
         </motion.div>
 
         <motion.div variants={itemVariants}>
@@ -113,13 +115,13 @@ const ChangePassword = () => {
             </div>
             
             <p className="text-sm text-center text-muted-foreground mb-5">
-              Create a strong password using a combination of letters, numbers, and symbols
+              {t('changePassword.description')}
             </p>
             
             <form onSubmit={handlePasswordChange} className="space-y-4">
               <div className="space-y-2">
                 <label htmlFor="current-password" className="text-sm font-medium">
-                  Current Password
+                  {t('changePassword.form.currentPassword.label')}
                 </label>
                 <div className="relative">
                   <Input
@@ -127,7 +129,7 @@ const ChangePassword = () => {
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    placeholder="Enter your current password"
+                    placeholder={t('changePassword.form.currentPassword.placeholder')}
                     className="pl-9"
                   />
                   <KeyRound className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground opacity-70" />
@@ -138,28 +140,28 @@ const ChangePassword = () => {
               
               <div className="space-y-2">
                 <label htmlFor="new-password" className="text-sm font-medium">
-                  New Password
+                  {t('changePassword.form.newPassword.label')}
                 </label>
                 <Input
                   id="new-password"
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Enter a new password"
+                  placeholder={t('changePassword.form.newPassword.placeholder')}
                   className="border-blue-200 dark:border-blue-900"
                 />
               </div>
               
               <div className="space-y-2">
                 <label htmlFor="confirm-password" className="text-sm font-medium">
-                  Confirm New Password
+                  {t('changePassword.form.confirmPassword.label')}
                 </label>
                 <Input
                   id="confirm-password"
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm your new password"
+                  placeholder={t('changePassword.form.confirmPassword.placeholder')}
                   className="border-blue-200 dark:border-blue-900"
                 />
               </div>
@@ -173,9 +175,9 @@ const ChangePassword = () => {
                     <div className={`h-1 flex-1 rounded ${newPassword.length > 11 ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'}`}></div>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {newPassword.length < 6 ? 'Password is too weak' : 
-                     newPassword.length < 9 ? 'Password is medium strong' : 
-                     'Password is strong'}
+                    {newPassword.length < 6 ? t('changePassword.passwordStrength.weak') : 
+                     newPassword.length < 9 ? t('changePassword.passwordStrength.medium') : 
+                     t('changePassword.passwordStrength.strong')}
                   </p>
                 </div>
               )}
@@ -189,11 +191,11 @@ const ChangePassword = () => {
                   {isLoading ? (
                     <div className="flex items-center">
                       <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                      Updating...
+                      {t('changePassword.form.updating')}
                     </div>
                   ) : (
                     <div className="flex items-center justify-center">
-                      Update Password
+                      {t('changePassword.form.submit')}
                     </div>
                   )}
                 </Button>

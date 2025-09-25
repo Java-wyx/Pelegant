@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, FileText, MessageSquare } from "lucide-react";
 import { BlurContainer } from "@/components/ui/BlurContainer";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const HelpSupport = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   
   const containerVariants = {
@@ -27,15 +29,15 @@ const HelpSupport = () => {
   const supportItems = [
     { 
       icon: FileText, 
-      label: "Terms of Use", 
-      description: "Review our terms and conditions",
+      label: t('helpSupport.items.termsOfUse.label'), 
+      description: t('helpSupport.items.termsOfUse.description'),
       color: "text-blue-500",
       route: "/terms-of-use"
     },
     { 
       icon: MessageSquare, 
-      label: "Feedback", 
-      description: "Share your thoughts with us",
+      label: t('helpSupport.items.feedback.label'), 
+      description: t('helpSupport.items.feedback.description'),
       color: "text-emerald-500",
       route: "/feedback"
     }
@@ -65,7 +67,7 @@ const HelpSupport = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-semibold text-foreground">Help & Support</h1>
+          <h1 className="text-xl font-semibold text-foreground">{t('helpSupport.title')}</h1>
         </motion.div>
         
         <motion.div 

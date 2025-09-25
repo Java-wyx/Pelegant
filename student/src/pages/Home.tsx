@@ -6,8 +6,10 @@ import { JobList } from "@/components/job/JobList";
 import { JobService } from "@/api/job";
 import { type Job } from "@/types/job";
 import { useAuthStore } from "@/stores/auth";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
   const { userId } = useAuthStore();
   const [forYouJobs, setForYouJobs] = useState<Job[]>([]); // 推荐的工作
   const [savedJobs, setSavedJobs] = useState<Job[]>([]); // 已保存的工作
@@ -29,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       if (!userId) {
-        console.log("User ID not available yet");
+        console.log(t('home.loading'));
         return;
       }
 
@@ -63,7 +65,7 @@ const Home = () => {
         setSavedJobIds((savedJobs || []).map((job) => job.id));
       } catch (error) {
         console.error("Failed to fetch jobs:", error);
-        toast.error("Failed to load the work list");
+        toast.error(t('home.error.fetchFailed'));
         setForYouJobs([]);
         setSavedJobs([]);
         setAllJobs([]);
@@ -154,7 +156,7 @@ const Home = () => {
       }
     } catch (error) {
       console.error("Failed to save job:", error);
-      toast.error("Failed to save job");
+      toast.error(t('home.error.saveFailed'));
     }
   };
 
@@ -196,13 +198,13 @@ const Home = () => {
               value="for-you"
               className="py-1.5 text-sm data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800/40 data-[state=active]:text-gray-700 dark:data-[state=active]:text-gray-200 data-[state=active]:font-normal data-[state=inactive]:text-gray-400 dark:data-[state=inactive]:text-gray-500/60 transition-colors"
             >
-              For you
+              {t('home.tabs.forYou')}
             </TabsTrigger>
             <TabsTrigger
               value="saved"
               className="py-1.5 text-sm data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800/40 data-[state=active]:text-gray-700 dark:data-[state=active]:text-gray-200 data-[state=active]:font-normal data-[state=inactive]:text-gray-400 dark:data-[state=inactive]:text-gray-500/60 transition-colors"
             >
-              Saved
+              {t('home.tabs.saved')}
             </TabsTrigger>
           </TabsList>
         </Tabs>
